@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+bindings_region/
+bindings_global/
+region_graph.json
+global_graph.json
+results.json
