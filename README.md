@@ -86,38 +86,6 @@ to call on missing rows.
 
 ---
 
-## Regenerating
-
-When the upstream bindings repo updates, regenerate with:
-
-```bash
-# 1. Pull latest bindings
-cd D:\Dev\Bitcraft_Projects\Bindings\bindings_region
-git pull
-cd D:\Dev\Bitcraft_Projects\Bindings\bindings_global
-git pull
-
-# 2. Re-analyse
-python analyze_bindings.py --region D:\Dev\Bitcraft_Projects\Bindings\bindings_region\src --out region_graph.json
-python analyze_bindings.py --global D:\Dev\Bitcraft_Projects\Bindings\bindings_global\src --out global_graph.json
-
-# 3. Re-generate
-python generate_bindings.py \
-    --region-graph region_graph.json \
-    --global-graph global_graph.json \
-    --out D:\Dev\Bitcraft_Projects\Bindings\bitcraft_types
-
-# 4. Run tests
-python test_bindings.py \
-    --region-graph region_graph.json \
-    --global-graph global_graph.json \
-    --out results.json \
-    --delay 1.0 --timeout 60 \
-    --skip-tables ActionLogData ActionLogState
-```
-
----
-
 ## Test results
 
 Tested against `bitcraft-live-14` (region) and `bitcraft-live-global` (global).
