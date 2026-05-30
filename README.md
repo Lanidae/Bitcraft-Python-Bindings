@@ -138,55 +138,6 @@ These tables have very large row counts or restricted access and will time out
 during subscription-based testing. The bindings themselves are correct — they
 simply cannot be tested without a very long timeout or a row-filtering subscription.
 
-**Region module:**
-
-| Table | Likely reason |
-|---|---|
-| `ActionLogData` | Large audit log |
-| `ActionLogState` | Large audit log |
-| `ActiveEnvironmentBuffState` | High-frequency per-entity data |
-| `AiDebugState` | Debug/internal table |
-| `AuctionListingState` | Large marketplace data |
-| `AutoClaimState` | Per-player data |
-| `CrumbTrailState` | Per-player exploration data |
-| `EnemyScalingState` | Per-enemy data |
-| `KnowledgeState` | Per-player large table |
-| `LocationState` | Per-entity location, very large |
-| `MoveValidationStrikeCounterState` | Per-player data |
-| `PartialExperienceState` | Per-player data |
-| `PlayerReportState` | Moderation data |
-| `PlayerTimestampState` | Per-player, large |
-| `PreviousEmpireNameState` | Historical data |
-| `PreviousPlayerSkillsState` | Historical data |
-| `PreviousPlayerUsernameState` | Historical data |
-| `RegionModerationConfigState` | Restricted |
-| `RezSickLongTermState` | Per-player data |
-| `StarvingPlayerState` | Per-player data |
-| `UnclaimedCollectiblesState` | Large world data |
-| `UnclaimedShardsState` | Large world data |
-| `UserAuthenticationState` | Restricted |
-| `UserModerationState` | Restricted |
-| `UserPreviousRegionState` | Per-player data |
-
-**Global module:**
-
-| Table | Likely reason |
-|---|---|
-| `EmpireLogState` | Large audit log |
-| `GrantedHubItemState` | Per-player data |
-| `ModConsequenceState` | Restricted moderation |
-| `ModEnforcementConfigState` | Restricted moderation |
-| `ModFlagLevelThresholdState` | Restricted moderation |
-| `ModFlaggedWordState` | Restricted moderation |
-| `ModReplacementTextState` | Restricted moderation |
-| `ModReportConfigState` | Restricted moderation |
-| `ModThresholdState` | Restricted moderation |
-| `ModViolationState` | Restricted moderation |
-| `ModWordReplacementState` | Restricted moderation |
-| `UserCreationTimestampState` | Per-user data |
-
----
-
 ## Notes
 
 - These bindings cover the **region** and **global** modules only. There is no
