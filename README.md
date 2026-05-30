@@ -143,5 +143,3 @@ simply cannot be tested without a very long timeout or a row-filtering subscript
 - The bindings are generated from the TypeScript branch of
   [BitCraft_Bindings](https://github.com/BitCraftToolBox/BitCraft_Bindings)
   (`ts-region` and `ts-global` branches).
-- The upstream repo is automatically updated when the game schema changes.
-  Re-run the generation pipeline after game updates.
