@@ -99,7 +99,7 @@ jobs:
         id: summary
         run: |
           python - <<'EOF'
-          import json, sys
+          import json, sys, os
           with open('results.json') as f:
               results = json.load(f)
           passed  = sum(1 for r in results if r['result'] == 'PASS')
