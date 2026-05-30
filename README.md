@@ -132,9 +132,7 @@ Tested against `bitcraft-live-14` (region) and `bitcraft-live-global` (global).
 All failures are subscription timeouts on large or restricted tables — no binding
 errors were found.
 
-### Known slow tables
-
-These tables have very large row counts or restricted access and will time out
+Some tables have very large row counts or restricted access and will time out
 during subscription-based testing. The bindings themselves are correct — they
 simply cannot be tested without a very long timeout or a row-filtering subscription.
 
