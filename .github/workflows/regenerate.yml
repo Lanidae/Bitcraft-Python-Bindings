@@ -1,0 +1,128 @@
+name: Regenerate Python Bindings
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # Daily at 6am UTC
+  workflow_dispatch:        # Manual trigger from GitHub UI
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install websockets
+
+      - name: Clone region bindings
+        run: |
+          git clone --branch ts-region --single-branch \
+            https://github.com/BitCraftToolBox/BitCraft_Bindings.git bindings_region
+
+      - name: Clone global bindings
+        run: |
+          git clone --branch ts-global --single-branch \
+            https://github.com/BitCraftToolBox/BitCraft_Bindings.git bindings_global
+
+      - name: Analyse bindings
+        run: |
+          python analyze_bindings.py --region bindings_region/src --out region_graph.json
+          python analyze_bindings.py --global bindings_global/src --out global_graph.json
+
+      - name: Generate Python bindings
+        run: |
+          python generate_bindings.py \
+            --region-graph region_graph.json \
+            --global-graph  global_graph.json \
+            --out bitcraft_types
+
+      - name: Run test suite
+        id: tests
+        continue-on-error: true
+        run: |
+          python test_bindings.py \
+            --region-graph region_graph.json \
+            --global-graph  global_graph.json \
+            --token         "${{ secrets.STDB_TOKEN }}" \
+            --out           results.json \
+            --delay         1.0 \
+            --timeout       60 \
+            --skip-tables \
+              ActionLogData \
+              ActionLogState \
+              ActiveEnvironmentBuffState \
+              AiDebugState \
+              AuctionListingState \
+              AutoClaimState \
+              CrumbTrailState \
+              EmpireLogState \
+              EnemyScalingState \
+              GrantedHubItemState \
+              KnowledgeState \
+              LocationState \
+              ModConsequenceState \
+              ModEnforcementConfigState \
+              ModFlagLevelThresholdState \
+              ModFlaggedWordState \
+              ModReplacementTextState \
+              ModReportConfigState \
+              ModThresholdState \
+              ModViolationState \
+              ModWordReplacementState \
+              MoveValidationStrikeCounterState \
+              PartialExperienceState \
+              PlayerReportState \
+              PlayerTimestampState \
+              PreviousEmpireNameState \
+              PreviousPlayerSkillsState \
+              PreviousPlayerUsernameState \
+              RegionModerationConfigState \
+              RezSickLongTermState \
+              StarvingPlayerState \
+              UnclaimedCollectiblesState \
+              UnclaimedShardsState \
+              UserAuthenticationState \
+              UserCreationTimestampState \
+              UserModerationState \
+              UserPreviousRegionState
+
+      - name: Summarise test results
+        id: summary
+        run: |
+          python - <<'EOF'
+          import json, sys
+          with open('results.json') as f:
+              results = json.load(f)
+          passed  = sum(1 for r in results if r['result'] == 'PASS')
+          skipped = sum(1 for r in results if r['result'] == 'SKIP')
+          failed  = sum(1 for r in results if r['result'] == 'FAIL')
+          print(f'Test results: {passed} passed, {skipped} skipped, {failed} failed')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f'passed={passed}\n')
+              f.write(f'skipped={skipped}\n')
+              f.write(f'failed={failed}\n')
+          EOF
+        env:
+          GITHUB_OUTPUT: ${{ env.GITHUB_OUTPUT }}
+
+      - name: Commit updated bindings
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add bitcraft_types/
+          if git diff --staged --quiet; then
+            echo "No changes to bindings — skipping commit."
+          else
+            TEST_SUMMARY="${{ steps.tests.outcome }} (${{ steps.summary.outputs.passed }} passed, ${{ steps.summary.outputs.skipped }} skipped, ${{ steps.summary.outputs.failed }} failed)"
+            git commit -m "Auto-regenerate bindings $(date -u +%Y-%m-%d) [tests: ${TEST_SUMMARY}]"
+            git push origin master
+          fi
