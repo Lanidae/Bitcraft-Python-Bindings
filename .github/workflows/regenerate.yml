@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -124,5 +124,5 @@ jobs:
           else
             TEST_SUMMARY="${{ steps.tests.outcome }} (${{ steps.summary.outputs.passed }} passed, ${{ steps.summary.outputs.skipped }} skipped, ${{ steps.summary.outputs.failed }} failed)"
             git commit -m "Auto-regenerate bindings $(date -u +%Y-%m-%d) [tests: ${TEST_SUMMARY}]"
-            git push origin master
+            git push origin main
           fi
