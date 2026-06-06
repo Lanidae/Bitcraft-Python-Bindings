@@ -23,6 +23,10 @@ class Biome(IntEnum):
     CAVE = 12
     JUNGLE = 13
     SAPWOODS = 14
+    DESERTEDBEACH = 15
+    TROPICALCANOPY = 16
+    VOLCANICCRAG = 17
+    UNCHARTEDOCEAN = 18
 
 
     @classmethod
