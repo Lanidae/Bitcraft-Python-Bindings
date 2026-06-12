@@ -51,6 +51,7 @@ class EnemyType(IntEnum):
     SPIDERDUNGEONSPIDERNEST = 40
     ENRAGEDALPHAJAKYL = 41
     DEERSWIFT = 42
+    CRYSTALIZEDHEXITECRAB = 43
 
 
     @classmethod

@@ -34,6 +34,8 @@ class ResourceDesc:
     not_respawning: bool = False
     show_time_left: bool = False
     on_destroy_yield_resource_chance: float = 0.0
+    on_destroy_yield_resource_min_radius: int = 0
+    on_destroy_yield_resource_max_radius: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ResourceDesc':
@@ -61,5 +63,7 @@ class ResourceDesc:
             scheduled_respawn_time=(raw.get('scheduled_respawn_time') if isinstance(raw, dict) else raw[18]),
             not_respawning=(raw.get('not_respawning') if isinstance(raw, dict) else raw[19]),
             show_time_left=(raw.get('show_time_left') if isinstance(raw, dict) else raw[20]),
-            on_destroy_yield_resource_chance=(raw.get('on_destroy_yield_resource_chance') if isinstance(raw, dict) else raw[21])
+            on_destroy_yield_resource_chance=(raw.get('on_destroy_yield_resource_chance') if isinstance(raw, dict) else raw[21]),
+            on_destroy_yield_resource_min_radius=(raw.get('on_destroy_yield_resource_min_radius') if isinstance(raw, dict) else raw[22]),
+            on_destroy_yield_resource_max_radius=(raw.get('on_destroy_yield_resource_max_radius') if isinstance(raw, dict) else raw[23])
         )

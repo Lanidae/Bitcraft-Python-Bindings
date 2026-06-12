@@ -100,7 +100,6 @@ from .empire_dismantle_request import EmpireDismantleRequest
 from .empire_donate_item_msg import EmpireDonateItemMsg
 from .empire_donate_shards_request import EmpireDonateShardsRequest
 from .empire_emblem_state import EmpireEmblemState
-from .empire_form_request import EmpireFormRequest
 from .empire_foundry_state import EmpireFoundryState
 from .empire_icon_desc import EmpireIconDesc
 from .empire_leave_request import EmpireLeaveRequest
@@ -143,8 +142,10 @@ from .equipment_visual_type import EquipmentVisualType
 from .experience_stack_f32 import ExperienceStackF32
 from .experience_stack import ExperienceStack
 from .exploration_chunks_state import ExplorationChunksState
+from .exploration_chunks_state_v2 import ExplorationChunksStateV2
 from .extract_outcome_state import ExtractOutcomeState
 from .extract_outcome_state_v2 import ExtractOutcomeStateV2
+from .extraction_spawned_placeable import ExtractionSpawnedPlaceable
 from .float_hex_tile_message import FloatHexTileMessage
 from .footprint_type import FootprintType
 from .friends_state import FriendsState
@@ -261,6 +262,7 @@ from .recover_deployable_msg import RecoverDeployableMsg
 from .region_connection_info import RegionConnectionInfo
 from .region_control_info import RegionControlInfo
 from .region_destroy_siege_engine_msg import RegionDestroySiegeEngineMsg
+from .region_exploration_info import RegionExplorationInfo
 from .region_population_info import RegionPopulationInfo
 from .region_sign_in_parameters import RegionSignInParameters
 from .rent_state import RentState
@@ -407,6 +409,7 @@ from .item_desc import ItemDesc
 from .placeable_desc import PlaceableDesc
 from .region_connection_info_op import RegionConnectionInfoOp
 from .region_control_info_op import RegionControlInfoOp
+from .region_exploration_info_op import RegionExplorationInfoOp
 from .region_population_info_op import RegionPopulationInfoOp
 from .region_sign_in_parameters_op import RegionSignInParametersOp
 from .identity_role import IdentityRole
@@ -508,14 +511,18 @@ from .on_deployable_recovered_msg import OnDeployableRecoveredMsg
 from .on_deployable_recovered_msg_v2 import OnDeployableRecoveredMsgV2
 from .trade_session_state import TradeSessionState
 from .inter_module_table_updates import InterModuleTableUpdates
+from .inter_module_table_updates_v2 import InterModuleTableUpdatesV2
 from .action_log_state import ActionLogState
 from .quest_stage_desc import QuestStageDesc
 from .transfer_player_msg import TransferPlayerMsg
 from .transfer_player_msg_v2 import TransferPlayerMsgV2
 from .transfer_player_msg_v3 import TransferPlayerMsgV3
+from .transfer_player_msg_v4 import TransferPlayerMsgV4
 from .message_contents import MessageContents
 from .message_contents_v2 import MessageContentsV2
 from .message_contents_v3 import MessageContentsV3
+from .message_contents_v4 import MessageContentsV4
 from .inter_module_message import InterModuleMessage
 from .inter_module_message_v2 import InterModuleMessageV2
 from .inter_module_message_v3 import InterModuleMessageV3
+from .inter_module_message_v4 import InterModuleMessageV4

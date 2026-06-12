@@ -151,8 +151,10 @@ from .equipment_visual_type import EquipmentVisualType
 from .experience_stack_f32 import ExperienceStackF32
 from .experience_stack import ExperienceStack
 from .exploration_chunks_state import ExplorationChunksState
+from .exploration_chunks_state_v2 import ExplorationChunksStateV2
 from .extract_outcome_state import ExtractOutcomeState
 from .extract_outcome_state_v2 import ExtractOutcomeStateV2
+from .extraction_spawned_placeable import ExtractionSpawnedPlaceable
 from .float_hex_tile_message import FloatHexTileMessage
 from .footprint_type import FootprintType
 from .gate_desc import GateDesc
@@ -340,6 +342,7 @@ from .recover_deployable_msg import RecoverDeployableMsg
 from .region_connection_info import RegionConnectionInfo
 from .region_control_info import RegionControlInfo
 from .region_destroy_siege_engine_msg import RegionDestroySiegeEngineMsg
+from .region_exploration_info import RegionExplorationInfo
 from .region_moderation_config_state import RegionModerationConfigState
 from .region_population_info import RegionPopulationInfo
 from .region_population_loop_timer import RegionPopulationLoopTimer
@@ -387,6 +390,7 @@ from .starving_loop_timer import StarvingLoopTimer
 from .starving_player_state import StarvingPlayerState
 from .storage_log_cleanup_loop_timer import StorageLogCleanupLoopTimer
 from .surface_type import SurfaceType
+from .system_chat_broadcast_timer import SystemChatBroadcastTimer
 from .target_state import TargetState
 from .target_update_request import TargetUpdateRequest
 from .targetable_state import TargetableState
@@ -567,6 +571,7 @@ from .item_desc import ItemDesc
 from .placeable_desc import PlaceableDesc
 from .region_connection_info_op import RegionConnectionInfoOp
 from .region_control_info_op import RegionControlInfoOp
+from .region_exploration_info_op import RegionExplorationInfoOp
 from .region_population_info_op import RegionPopulationInfoOp
 from .region_sign_in_parameters_op import RegionSignInParametersOp
 from .world_gen_generated_resource_deposit import WorldGenGeneratedResourceDeposit
@@ -692,6 +697,7 @@ from .on_deployable_recovered_msg import OnDeployableRecoveredMsg
 from .on_deployable_recovered_msg_v2 import OnDeployableRecoveredMsgV2
 from .trade_session_state import TradeSessionState
 from .inter_module_table_updates import InterModuleTableUpdates
+from .inter_module_table_updates_v2 import InterModuleTableUpdatesV2
 from .world_gen_mountains_map_definition import WorldGenMountainsMapDefinition
 from .world_gen_biome_definition import WorldGenBiomeDefinition
 from .world_gen_resources_map_definition import WorldGenResourcesMapDefinition
@@ -700,11 +706,14 @@ from .quest_stage_desc import QuestStageDesc
 from .transfer_player_msg import TransferPlayerMsg
 from .transfer_player_msg_v2 import TransferPlayerMsgV2
 from .transfer_player_msg_v3 import TransferPlayerMsgV3
+from .transfer_player_msg_v4 import TransferPlayerMsgV4
 from .world_gen_biomes_map_definition import WorldGenBiomesMapDefinition
 from .message_contents import MessageContents
 from .message_contents_v2 import MessageContentsV2
 from .message_contents_v3 import MessageContentsV3
+from .message_contents_v4 import MessageContentsV4
 from .world_gen_world_definition import WorldGenWorldDefinition
 from .inter_module_message import InterModuleMessage
 from .inter_module_message_v2 import InterModuleMessageV2
 from .inter_module_message_v3 import InterModuleMessageV3
+from .inter_module_message_v4 import InterModuleMessageV4
