@@ -26,20 +26,26 @@ jobs:
       - name: Install dependencies
         run: pip install websockets
 
-      - name: Clone region bindings
+      - name: Fetch STDB schema
+        env:
+          STDB_TOKEN: ${{ secrets.STDB_TOKEN }}
         run: |
-          git clone --branch ts-region --single-branch \
-            https://github.com/BitCraftToolBox/BitCraft_Bindings.git bindings_region
+          curl -sf \
+            "https://bitcraft-early-access.spacetimedb.com/v1/database/bitcraft-live-14/schema?version=9" \
+            -H "Authorization: $STDB_TOKEN" \
+            -o schema_region.json
+          curl -sf \
+            "https://bitcraft-early-access.spacetimedb.com/v1/database/bitcraft-live-global/schema?version=9" \
+            -H "Authorization: $STDB_TOKEN" \
+            -o schema_global.json
 
-      - name: Clone global bindings
+      - name: Generate graphs from schema
         run: |
-          git clone --branch ts-global --single-branch \
-            https://github.com/BitCraftToolBox/BitCraft_Bindings.git bindings_global
-
-      - name: Analyse bindings
-        run: |
-          python analyze_bindings.py --region bindings_region/src --out region_graph.json
-          python analyze_bindings.py --global bindings_global/src --out global_graph.json
+          python schema_to_graph.py \
+            --region schema_region.json \
+            --global schema_global.json \
+            --out-region region_graph.json \
+            --out-global global_graph.json
 
       - name: Generate Python bindings
         run: |
