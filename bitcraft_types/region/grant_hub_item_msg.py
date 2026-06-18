@@ -10,7 +10,7 @@ from .hub_item_type import HubItemType
 
 @dataclass
 class GrantHubItemMsg:
-    player_identity: str = 0
+    player_identity: object = 0
     item_type: HubItemType = 0
     item_id: int = 0
     quantity: int = 0
@@ -20,7 +20,7 @@ class GrantHubItemMsg:
         if raw is None:
             return cls()
         return cls(
-            player_identity=((raw.get('player_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('player_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('player_identity') if isinstance(raw, dict) else raw[0])),
+            player_identity=(raw.get('player_identity') if isinstance(raw, dict) else raw[0]),
             item_type=HubItemType.from_row((raw.get('item_type') if isinstance(raw, dict) else raw[1])),
             item_id=(raw.get('item_id') if isinstance(raw, dict) else raw[2]),
             quantity=(raw.get('quantity') if isinstance(raw, dict) else raw[3])

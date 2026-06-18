@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class PreviousEmpireNameState:
-    emperor_identity: str = 0
+    emperor_identity: object = 0
     empire_name: str = ''
     empire_lower_case_name: str = ''
 
@@ -17,7 +17,7 @@ class PreviousEmpireNameState:
         if raw is None:
             return cls()
         return cls(
-            emperor_identity=((raw.get('emperor_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('emperor_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('emperor_identity') if isinstance(raw, dict) else raw[0])),
+            emperor_identity=(raw.get('emperor_identity') if isinstance(raw, dict) else raw[0]),
             empire_name=(raw.get('empire_name') if isinstance(raw, dict) else raw[1]),
             empire_lower_case_name=(raw.get('empire_lower_case_name') if isinstance(raw, dict) else raw[2])
         )

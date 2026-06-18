@@ -9,7 +9,7 @@ from .offset_coordinates_float import OffsetCoordinatesFloat
 
 
 @dataclass
-class AiDebugState:
+class AIDebugState:
     entity_id: int = 0
     target_entity_id: int = 0
     current_destination: OffsetCoordinatesFloat = 0
@@ -18,7 +18,7 @@ class AiDebugState:
     dp: float = 0.0
 
     @classmethod
-    def from_row(cls, raw) -> 'AiDebugState':
+    def from_row(cls, raw) -> 'AIDebugState':
         if raw is None:
             return cls()
         return cls(

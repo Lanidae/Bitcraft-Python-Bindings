@@ -14,7 +14,7 @@ class DeployableDismountTimer:
     scheduled_at: object = 0
     deployable_entity_id: int = 0
     player_entity_id: int = 0
-    coordinates: int = 0
+    coordinates: OffsetCoordinatesFloat | None = None
     skip_deployable_icon: bool = False
 
     @classmethod
@@ -26,6 +26,6 @@ class DeployableDismountTimer:
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             deployable_entity_id=(raw.get('deployable_entity_id') if isinstance(raw, dict) else raw[2]),
             player_entity_id=(raw.get('player_entity_id') if isinstance(raw, dict) else raw[3]),
-            coordinates=(raw.get('coordinates') if isinstance(raw, dict) else raw[4]),
+            coordinates=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (OffsetCoordinatesFloat.from_row(_v[1])))((raw.get('coordinates') if isinstance(raw, dict) else raw[4])),
             skip_deployable_icon=(raw.get('skip_deployable_icon') if isinstance(raw, dict) else raw[5])
         )

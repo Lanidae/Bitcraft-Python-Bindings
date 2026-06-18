@@ -10,7 +10,7 @@ from typing import Optional
 class EmpireRankDesc:
     rank: int = 0
     title: str = ''
-    max_count: int | None = None
+    max_count: object | None = None
     permissions: list = field(default_factory=list)
 
     @classmethod

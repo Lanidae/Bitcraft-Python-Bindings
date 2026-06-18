@@ -13,7 +13,7 @@ class TransferPlayerTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
     entity_id: int = 0
-    destination: int = 0
+    destination: FloatHexTileMessage = 0
     new_region_index: int = 0
     with_vehicle: bool = False
     teleport_energy_cost: float = 0.0
@@ -26,7 +26,7 @@ class TransferPlayerTimer:
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[2]),
-            destination=(raw.get('destination') if isinstance(raw, dict) else raw[3]),
+            destination=FloatHexTileMessage.from_row((raw.get('destination') if isinstance(raw, dict) else raw[3])),
             new_region_index=(raw.get('new_region_index') if isinstance(raw, dict) else raw[4]),
             with_vehicle=(raw.get('with_vehicle') if isinstance(raw, dict) else raw[5]),
             teleport_energy_cost=(raw.get('teleport_energy_cost') if isinstance(raw, dict) else raw[6])

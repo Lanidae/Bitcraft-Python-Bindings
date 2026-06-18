@@ -14,7 +14,7 @@ class ClosedListingState:
     owner_entity_id: int = 0
     claim_entity_id: int = 0
     item_stack: ItemStack = 0
-    timestamp: int = 0
+    timestamp: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ClosedListingState':
@@ -25,5 +25,5 @@ class ClosedListingState:
             owner_entity_id=(raw.get('owner_entity_id') if isinstance(raw, dict) else raw[1]),
             claim_entity_id=(raw.get('claim_entity_id') if isinstance(raw, dict) else raw[2]),
             item_stack=ItemStack.from_row((raw.get('item_stack') if isinstance(raw, dict) else raw[3])),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4]))
+            timestamp=(raw.get('timestamp') if isinstance(raw, dict) else raw[4])
         )

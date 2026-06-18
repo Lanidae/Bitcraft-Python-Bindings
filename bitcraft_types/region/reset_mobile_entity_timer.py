@@ -14,8 +14,8 @@ class ResetMobileEntityTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
     owner_entity_id: int = 0
-    position: int = 0
-    strike_counter_to_update: int = 0
+    position: OffsetCoordinatesFloat | None = None
+    strike_counter_to_update: MoveValidationStrikeCounterState | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ResetMobileEntityTimer':
@@ -25,6 +25,6 @@ class ResetMobileEntityTimer:
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             owner_entity_id=(raw.get('owner_entity_id') if isinstance(raw, dict) else raw[2]),
-            position=(raw.get('position') if isinstance(raw, dict) else raw[3]),
-            strike_counter_to_update=(raw.get('strike_counter_to_update') if isinstance(raw, dict) else raw[4])
+            position=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (OffsetCoordinatesFloat.from_row(_v[1])))((raw.get('position') if isinstance(raw, dict) else raw[3])),
+            strike_counter_to_update=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (MoveValidationStrikeCounterState.from_row(_v[1])))((raw.get('strike_counter_to_update') if isinstance(raw, dict) else raw[4]))
         )

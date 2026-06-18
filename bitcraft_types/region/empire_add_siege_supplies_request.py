@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class EmpireAddSiegeSuppliesRequest:
     building_entity_id: int = 0
-    proxy_empire_entity_id: int | None = None
+    proxy_empire_entity_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'EmpireAddSiegeSuppliesRequest':

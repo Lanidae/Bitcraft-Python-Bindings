@@ -7,13 +7,13 @@ from typing import Optional
 
 
 @dataclass
-class CommonRng:
+class CommonRNG:
     seed: int = 0
     x: int = 0
     y: int = 0
 
     @classmethod
-    def from_row(cls, raw) -> 'CommonRng':
+    def from_row(cls, raw) -> 'CommonRNG':
         if raw is None:
             return cls()
         return cls(

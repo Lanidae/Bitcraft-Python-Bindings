@@ -11,7 +11,7 @@ class DroppedInventoryOwnershipTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
     entity_id: int = 0
-    started_at: int = 0
+    started_at: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'DroppedInventoryOwnershipTimer':

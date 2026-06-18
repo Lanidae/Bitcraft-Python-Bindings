@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class BuildingSpawnInfo:
-    construction_recipe_id: int | None = None
+    construction_recipe_id: object | None = None
     building_description_id: int = 0
     biomes: list = field(default_factory=list)
 

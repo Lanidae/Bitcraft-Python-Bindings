@@ -12,7 +12,7 @@ class EmpireDonateItemMsg:
     item_id: int = 0
     is_cargo: bool = False
     count: int = 0
-    on_behalf_username: str | None = None
+    on_behalf_username: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'EmpireDonateItemMsg':

@@ -17,7 +17,7 @@ class TradeOrderState:
     offer_cargo_id: list = field(default_factory=list)
     required_items: list = field(default_factory=list)
     required_cargo_id: list = field(default_factory=list)
-    traveler_trade_order_id: int | None = None
+    traveler_trade_order_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'TradeOrderState':

@@ -12,7 +12,7 @@ class EmpirePlayerDataState:
     empire_entity_id: int = 0
     rank: int = 0
     donated_shards: int = 0
-    noble: int | None = None
+    noble: object | None = None
     donated_empire_currency: int = 0
 
     @classmethod
@@ -24,6 +24,6 @@ class EmpirePlayerDataState:
             empire_entity_id=(raw.get('empire_entity_id') if isinstance(raw, dict) else raw[1]),
             rank=(raw.get('rank') if isinstance(raw, dict) else raw[2]),
             donated_shards=(raw.get('donated_shards') if isinstance(raw, dict) else raw[3]),
-            noble=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else _v[1]))((raw.get('noble') if isinstance(raw, dict) else raw[4])),
+            noble=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('noble') if isinstance(raw, dict) else raw[4])),
             donated_empire_currency=(raw.get('donated_empire_currency') if isinstance(raw, dict) else raw[5])
         )

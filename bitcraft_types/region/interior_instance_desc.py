@@ -23,7 +23,7 @@ class InteriorInstanceDesc:
     max_zoom: float = 0.0
     min_angle: float = 0.0
     max_angle: float = 0.0
-    intertior_environment_id: int | None = None
+    intertior_environment_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'InteriorInstanceDesc':

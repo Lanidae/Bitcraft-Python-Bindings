@@ -8,12 +8,12 @@ from typing import Optional
 
 @dataclass
 class BlockedIdentity:
-    identity: str = 0
+    identity: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'BlockedIdentity':
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0]))
+            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0])
         )

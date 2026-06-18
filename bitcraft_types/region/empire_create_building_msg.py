@@ -14,7 +14,7 @@ class EmpireCreateBuildingMsg:
     player_entity_id: int = 0
     building_entity_id: int = 0
     building_desc_id: int = 0
-    construction_recipe_id: int | None = None
+    construction_recipe_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'EmpireCreateBuildingMsg':

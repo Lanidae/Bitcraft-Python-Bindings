@@ -12,7 +12,7 @@ from .offset_coordinates_float import OffsetCoordinatesFloat
 class DestroyDimensionNetworkTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
-    player_teleport_location: int = 0
+    player_teleport_location: OffsetCoordinatesFloat = 0
     dimension_network_entity_id: int = 0
 
     @classmethod
@@ -22,6 +22,6 @@ class DestroyDimensionNetworkTimer:
         return cls(
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
-            player_teleport_location=(raw.get('player_teleport_location') if isinstance(raw, dict) else raw[2]),
+            player_teleport_location=OffsetCoordinatesFloat.from_row((raw.get('player_teleport_location') if isinstance(raw, dict) else raw[2])),
             dimension_network_entity_id=(raw.get('dimension_network_entity_id') if isinstance(raw, dict) else raw[3])
         )

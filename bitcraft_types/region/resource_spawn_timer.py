@@ -12,9 +12,9 @@ from .small_hex_tile_message import SmallHexTileMessage
 class ResourceSpawnTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
-    entity_id: int = 0
+    entity_id: object | None = None
     resource_id: int = 0
-    coordinates: int = 0
+    coordinates: SmallHexTileMessage = 0
     direction_index: int = 0
     health: int = 0
     check_buildings: bool = False
@@ -27,9 +27,9 @@ class ResourceSpawnTimer:
         return cls(
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
-            entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[2]),
+            entity_id=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('entity_id') if isinstance(raw, dict) else raw[2])),
             resource_id=(raw.get('resource_id') if isinstance(raw, dict) else raw[3]),
-            coordinates=(raw.get('coordinates') if isinstance(raw, dict) else raw[4]),
+            coordinates=SmallHexTileMessage.from_row((raw.get('coordinates') if isinstance(raw, dict) else raw[4])),
             direction_index=(raw.get('direction_index') if isinstance(raw, dict) else raw[5]),
             health=(raw.get('health') if isinstance(raw, dict) else raw[6]),
             check_buildings=(raw.get('check_buildings') if isinstance(raw, dict) else raw[7]),

@@ -17,9 +17,9 @@ class MobileEntityState:
     destination_z: int = 0
     dimension: int = 0
     is_walking: bool = False
-    pad1: int = 0
-    pad2: int = 0
-    pad3: int = 0
+    _pad1: int = 0
+    _pad2: int = 0
+    _pad3: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'MobileEntityState':
@@ -35,7 +35,7 @@ class MobileEntityState:
             destination_z=(raw.get('destination_z') if isinstance(raw, dict) else raw[6]),
             dimension=(raw.get('dimension') if isinstance(raw, dict) else raw[7]),
             is_walking=(raw.get('is_walking') if isinstance(raw, dict) else raw[8]),
-            pad1=(raw.get('pad1') if isinstance(raw, dict) else raw[9]),
-            pad2=(raw.get('pad2') if isinstance(raw, dict) else raw[10]),
-            pad3=(raw.get('pad3') if isinstance(raw, dict) else raw[11])
+            _pad1=(raw.get('_pad1') if isinstance(raw, dict) else raw[9]),
+            _pad2=(raw.get('_pad2') if isinstance(raw, dict) else raw[10]),
+            _pad3=(raw.get('_pad3') if isinstance(raw, dict) else raw[11])
         )

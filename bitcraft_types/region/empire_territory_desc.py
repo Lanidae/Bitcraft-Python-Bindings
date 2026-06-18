@@ -10,7 +10,7 @@ from typing import Optional
 class EmpireTerritoryDesc:
     id: int = 0
     chunks: int = 0
-    ranks: object = 0
+    ranks: bytes = b''
     crown_collectible_id: int = 0
 
     @classmethod

@@ -13,7 +13,7 @@ class ItemStack:
     item_id: int = 0
     quantity: int = 0
     item_type: ItemType = 0
-    durability: int | None = None
+    durability: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ItemStack':

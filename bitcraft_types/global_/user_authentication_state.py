@@ -8,14 +8,14 @@ from typing import Optional
 
 @dataclass
 class UserAuthenticationState:
-    identity: str = 0
-    timestamp: int = 0
+    identity: object = 0
+    timestamp: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'UserAuthenticationState':
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[1]))
+            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
+            timestamp=(raw.get('timestamp') if isinstance(raw, dict) else raw[1])
         )

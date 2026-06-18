@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class EnemyClearAggroRequest:
     entity_id: int = 0
-    aggro_entity_id: int | None = None
+    aggro_entity_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'EnemyClearAggroRequest':

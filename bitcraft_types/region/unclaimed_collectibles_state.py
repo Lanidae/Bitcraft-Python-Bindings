@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class UnclaimedCollectiblesState:
-    identity: str = 0
+    identity: object = 0
     collectibles: list = field(default_factory=list)
 
     @classmethod
@@ -16,6 +16,6 @@ class UnclaimedCollectiblesState:
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
+            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
             collectibles=[_item for _item in ((raw.get('collectibles') if isinstance(raw, dict) else raw[1]) or [])]
         )

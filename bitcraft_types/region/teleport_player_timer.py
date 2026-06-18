@@ -13,9 +13,9 @@ from .server_teleport_reason import ServerTeleportReason
 class TeleportPlayerTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
-    location: int = 0
+    location: OffsetCoordinatesFloat = 0
     player_entity_id: int = 0
-    reason: int = 0
+    reason: ServerTeleportReason = 0
 
     @classmethod
     def from_row(cls, raw) -> 'TeleportPlayerTimer':
@@ -24,7 +24,7 @@ class TeleportPlayerTimer:
         return cls(
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
-            location=(raw.get('location') if isinstance(raw, dict) else raw[2]),
+            location=OffsetCoordinatesFloat.from_row((raw.get('location') if isinstance(raw, dict) else raw[2])),
             player_entity_id=(raw.get('player_entity_id') if isinstance(raw, dict) else raw[3]),
-            reason=(raw.get('reason') if isinstance(raw, dict) else raw[4])
+            reason=ServerTeleportReason.from_row((raw.get('reason') if isinstance(raw, dict) else raw[4]))
         )

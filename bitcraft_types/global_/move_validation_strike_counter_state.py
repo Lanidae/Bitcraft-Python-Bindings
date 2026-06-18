@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class MoveValidationStrikeCounterState:
     entity_id: int = 0
-    validation_failure_timestamps: list = field(default_factory=list)
+    validation_failure_timestamps: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'MoveValidationStrikeCounterState':
@@ -17,5 +17,5 @@ class MoveValidationStrikeCounterState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            validation_failure_timestamps=[_item for _item in ((raw.get('validation_failure_timestamps') if isinstance(raw, dict) else raw[1]) or [])]
+            validation_failure_timestamps=(raw.get('validation_failure_timestamps') if isinstance(raw, dict) else raw[1])
         )

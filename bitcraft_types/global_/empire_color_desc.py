@@ -10,7 +10,7 @@ from typing import Optional
 class EmpireColorDesc:
     id: int = 0
     color_argb: int = 0
-    color2_argb: int | None = None
+    color2_argb: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'EmpireColorDesc':

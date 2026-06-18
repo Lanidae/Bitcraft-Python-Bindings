@@ -4,7 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Optional
 
-from .common_rng import CommonRng
+from .common_rng import CommonRNG
 from .resource_clump_info import ResourceClumpInfo
 from .resource_info import ResourceInfo
 
@@ -17,7 +17,7 @@ class ResourcesLog:
     world_height: int = 0
     resource_clumps: list = field(default_factory=list)
     resources: list = field(default_factory=list)
-    random: CommonRng = 0
+    random: CommonRNG = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ResourcesLog':
@@ -29,5 +29,5 @@ class ResourcesLog:
             world_height=(raw.get('world_height') if isinstance(raw, dict) else raw[2]),
             resource_clumps=[ResourceClumpInfo.from_row(_item) for _item in ((raw.get('resource_clumps') if isinstance(raw, dict) else raw[3]) or [])],
             resources=[ResourceInfo.from_row(_item) for _item in ((raw.get('resources') if isinstance(raw, dict) else raw[4]) or [])],
-            random=CommonRng.from_row((raw.get('random') if isinstance(raw, dict) else raw[5]))
+            random=CommonRNG.from_row((raw.get('random') if isinstance(raw, dict) else raw[5]))
         )

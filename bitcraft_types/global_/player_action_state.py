@@ -17,16 +17,16 @@ class PlayerActionState:
     entity_id: int = 0
     start_time: int = 0
     duration: int = 0
-    target: int | None = None
-    recipe_id: int | None = None
+    target: object | None = None
+    recipe_id: object | None = None
     action_type: PlayerActionType = 0
     layer: PlayerActionLayer = 0
     last_action_result: PlayerActionResult = 0
     client_cancel: bool = False
     was_consumed: bool = False
-    pad1: int = 0
-    pad2: int = 0
-    pad3: int = 0
+    _pad1: int = 0
+    _pad2: int = 0
+    _pad3: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'PlayerActionState':
@@ -45,7 +45,7 @@ class PlayerActionState:
             last_action_result=PlayerActionResult.from_row((raw.get('last_action_result') if isinstance(raw, dict) else raw[9])),
             client_cancel=(raw.get('client_cancel') if isinstance(raw, dict) else raw[10]),
             was_consumed=(raw.get('was_consumed') if isinstance(raw, dict) else raw[11]),
-            pad1=(raw.get('pad1') if isinstance(raw, dict) else raw[12]),
-            pad2=(raw.get('pad2') if isinstance(raw, dict) else raw[13]),
-            pad3=(raw.get('pad3') if isinstance(raw, dict) else raw[14])
+            _pad1=(raw.get('_pad1') if isinstance(raw, dict) else raw[12]),
+            _pad2=(raw.get('_pad2') if isinstance(raw, dict) else raw[13]),
+            _pad3=(raw.get('_pad3') if isinstance(raw, dict) else raw[14])
         )

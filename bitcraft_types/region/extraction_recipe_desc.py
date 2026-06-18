@@ -6,7 +6,6 @@ from typing import Optional
 
 from .empire_permission import EmpirePermission
 from .experience_stack_f32 import ExperienceStackF32
-from .extraction_spawned_placeable import ExtractionSpawnedPlaceable
 from .input_item_stack import InputItemStack
 from .level_requirement import LevelRequirement
 from .probabilistic_item_stack import ProbabilisticItemStack
@@ -35,10 +34,10 @@ class ExtractionRecipeDesc:
     verb_phrase: str = ''
     tool_mesh_index: int = 0
     recipe_performance_id: int = 0
-    empire_rank_requirement: int | None = None
+    empire_rank_requirement: object | None = None
     show_in_progression: bool = False
     empire_permission_required: EmpirePermission | None = None
-    spawned_placeables: list[ExtractionSpawnedPlaceable] | None = None
+    spawned_placeables: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ExtractionRecipeDesc':

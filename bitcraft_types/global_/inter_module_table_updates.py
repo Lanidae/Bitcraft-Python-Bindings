@@ -4,59 +4,34 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Optional
 
-from .blocked_identity_op import BlockedIdentityOp
-from .building_nickname_state_op import BuildingNicknameStateOp
-from .building_state_op import BuildingStateOp
-from .claim_lowercase_name_state_op import ClaimLowercaseNameStateOp
-from .claim_member_state_op import ClaimMemberStateOp
-from .claim_state_op import ClaimStateOp
-from .empire_chunk_state_op import EmpireChunkStateOp
-from .empire_node_siege_state_op import EmpireNodeSiegeStateOp
-from .empire_node_state_op import EmpireNodeStateOp
-from .empire_player_data_state_op import EmpirePlayerDataStateOp
-from .empire_rank_state_op import EmpireRankStateOp
-from .empire_settlement_state_op import EmpireSettlementStateOp
-from .empire_state_op import EmpireStateOp
-from .identity_role_op import IdentityRoleOp
-from .location_state_op import LocationStateOp
-from .player_housing_state_op import PlayerHousingStateOp
-from .player_report_state_op import PlayerReportStateOp
-from .region_connection_info_op import RegionConnectionInfoOp
-from .region_control_info_op import RegionControlInfoOp
-from .region_population_info_op import RegionPopulationInfoOp
-from .region_sign_in_parameters_op import RegionSignInParametersOp
-from .user_authentication_state_op import UserAuthenticationStateOp
-from .user_moderation_state_op import UserModerationStateOp
-from .user_state_op import UserStateOp
-
 
 
 @dataclass
 class InterModuleTableUpdates:
-    blocked_identity: list[BlockedIdentityOp] | None = None
-    building_nickname_state: list[BuildingNicknameStateOp] | None = None
-    building_state: list[BuildingStateOp] | None = None
-    claim_lowercase_name_state: list[ClaimLowercaseNameStateOp] | None = None
-    claim_member_state: list[ClaimMemberStateOp] | None = None
-    claim_state: list[ClaimStateOp] | None = None
-    empire_chunk_state: list[EmpireChunkStateOp] | None = None
-    empire_node_siege_state: list[EmpireNodeSiegeStateOp] | None = None
-    empire_node_state: list[EmpireNodeStateOp] | None = None
-    empire_player_data_state: list[EmpirePlayerDataStateOp] | None = None
-    empire_rank_state: list[EmpireRankStateOp] | None = None
-    empire_settlement_state: list[EmpireSettlementStateOp] | None = None
-    empire_state: list[EmpireStateOp] | None = None
-    identity_role: list[IdentityRoleOp] | None = None
-    location_state: list[LocationStateOp] | None = None
-    player_housing_state: list[PlayerHousingStateOp] | None = None
-    player_report_state: list[PlayerReportStateOp] | None = None
-    region_connection_info: list[RegionConnectionInfoOp] | None = None
-    region_control_info: list[RegionControlInfoOp] | None = None
-    region_population_info: list[RegionPopulationInfoOp] | None = None
-    region_sign_in_parameters: list[RegionSignInParametersOp] | None = None
-    user_authentication_state: list[UserAuthenticationStateOp] | None = None
-    user_moderation_state: list[UserModerationStateOp] | None = None
-    user_state: list[UserStateOp] | None = None
+    blocked_identity: object | None = None
+    building_nickname_state: object | None = None
+    building_state: object | None = None
+    claim_lowercase_name_state: object | None = None
+    claim_member_state: object | None = None
+    claim_state: object | None = None
+    empire_chunk_state: object | None = None
+    empire_node_siege_state: object | None = None
+    empire_node_state: object | None = None
+    empire_player_data_state: object | None = None
+    empire_rank_state: object | None = None
+    empire_settlement_state: object | None = None
+    empire_state: object | None = None
+    identity_role: object | None = None
+    location_state: object | None = None
+    player_housing_state: object | None = None
+    player_report_state: object | None = None
+    region_connection_info: object | None = None
+    region_control_info: object | None = None
+    region_population_info: object | None = None
+    region_sign_in_parameters: object | None = None
+    user_authentication_state: object | None = None
+    user_moderation_state: object | None = None
+    user_state: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'InterModuleTableUpdates':

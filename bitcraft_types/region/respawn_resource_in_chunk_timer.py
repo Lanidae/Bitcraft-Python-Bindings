@@ -14,7 +14,7 @@ class RespawnResourceInChunkTimer:
     scheduled_at: object = 0
     chunk_index: int = 0
     resource_clump_id: int = 0
-    coord: int = 0
+    coord: SmallHexTileMessage = 0
 
     @classmethod
     def from_row(cls, raw) -> 'RespawnResourceInChunkTimer':
@@ -25,5 +25,5 @@ class RespawnResourceInChunkTimer:
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             chunk_index=(raw.get('chunk_index') if isinstance(raw, dict) else raw[2]),
             resource_clump_id=(raw.get('resource_clump_id') if isinstance(raw, dict) else raw[3]),
-            coord=(raw.get('coord') if isinstance(raw, dict) else raw[4])
+            coord=SmallHexTileMessage.from_row((raw.get('coord') if isinstance(raw, dict) else raw[4]))
         )

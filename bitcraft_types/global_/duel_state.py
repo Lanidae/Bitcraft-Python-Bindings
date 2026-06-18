@@ -11,9 +11,9 @@ class DuelState:
     entity_id: int = 0
     initiator_entity_id: int = 0
     acceptor_entity_id: int = 0
-    victor: int | None = None
+    victor: object | None = None
     player_entity_ids: list = field(default_factory=list)
-    out_of_range_timestamps: list[object] | None = None
+    out_of_range_timestamps: object = 0
 
     @classmethod
     def from_row(cls, raw) -> 'DuelState':
@@ -25,5 +25,5 @@ class DuelState:
             acceptor_entity_id=(raw.get('acceptor_entity_id') if isinstance(raw, dict) else raw[2]),
             victor=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('victor') if isinstance(raw, dict) else raw[3])),
             player_entity_ids=[_item for _item in ((raw.get('player_entity_ids') if isinstance(raw, dict) else raw[4]) or [])],
-            out_of_range_timestamps=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('out_of_range_timestamps') if isinstance(raw, dict) else raw[5]))
+            out_of_range_timestamps=(raw.get('out_of_range_timestamps') if isinstance(raw, dict) else raw[5])
         )

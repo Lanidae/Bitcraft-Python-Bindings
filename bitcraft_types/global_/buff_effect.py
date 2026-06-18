@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class BuffEffect:
     buff_id: int = 0
-    duration: int | None = None
+    duration: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'BuffEffect':

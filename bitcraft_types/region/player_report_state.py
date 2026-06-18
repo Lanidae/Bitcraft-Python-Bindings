@@ -17,8 +17,8 @@ class PlayerReportState:
     report_type: str = ''
     report_message: str = ''
     reported_chat_message: ChatMessageState | None = None
-    chat_channel_context: list[ChatMessageState] | None = None
-    chat_user_context: list[ChatMessageState] | None = None
+    chat_channel_context: object | None = None
+    chat_user_context: object | None = None
     actioned: bool = False
 
     @classmethod

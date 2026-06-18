@@ -11,8 +11,8 @@ class ClaimTechState:
     entity_id: int = 0
     learned: list = field(default_factory=list)
     researching: int = 0
-    start_timestamp: int = 0
-    scheduled_id: int | None = None
+    start_timestamp: object = 0
+    scheduled_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ClaimTechState':
@@ -22,6 +22,6 @@ class ClaimTechState:
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             learned=[_item for _item in ((raw.get('learned') if isinstance(raw, dict) else raw[1]) or [])],
             researching=(raw.get('researching') if isinstance(raw, dict) else raw[2]),
-            start_timestamp=((raw.get('start_timestamp') if isinstance(raw, dict) else raw[3])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('start_timestamp') if isinstance(raw, dict) else raw[3]), dict) else (raw.get('start_timestamp') if isinstance(raw, dict) else raw[3])),
+            start_timestamp=(raw.get('start_timestamp') if isinstance(raw, dict) else raw[3]),
             scheduled_id=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('scheduled_id') if isinstance(raw, dict) else raw[4]))
         )

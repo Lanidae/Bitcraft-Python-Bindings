@@ -11,7 +11,7 @@ class ChatChannelPermissionState:
     entity_id: int = 0
     chat_channel_entity_id: int = 0
     player_entity_id: int = 0
-    identity: str = 0
+    identity: object = 0
     rank: int = 0
 
     @classmethod
@@ -22,6 +22,6 @@ class ChatChannelPermissionState:
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             chat_channel_entity_id=(raw.get('chat_channel_entity_id') if isinstance(raw, dict) else raw[1]),
             player_entity_id=(raw.get('player_entity_id') if isinstance(raw, dict) else raw[2]),
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[3])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[3]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[3])),
+            identity=(raw.get('identity') if isinstance(raw, dict) else raw[3]),
             rank=(raw.get('rank') if isinstance(raw, dict) else raw[4])
         )

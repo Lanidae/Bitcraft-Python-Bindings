@@ -10,7 +10,7 @@ from .user_moderation_policy import UserModerationPolicy
 
 @dataclass
 class UserModerationCreateUserPolicyRequest:
-    target_identity: str = 0
+    target_identity: object = 0
     user_moderation_policy: UserModerationPolicy = 0
     duration_ms: int = 0
 
@@ -19,7 +19,7 @@ class UserModerationCreateUserPolicyRequest:
         if raw is None:
             return cls()
         return cls(
-            target_identity=((raw.get('target_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('target_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('target_identity') if isinstance(raw, dict) else raw[0])),
+            target_identity=(raw.get('target_identity') if isinstance(raw, dict) else raw[0]),
             user_moderation_policy=UserModerationPolicy.from_row((raw.get('user_moderation_policy') if isinstance(raw, dict) else raw[1])),
             duration_ms=(raw.get('duration_ms') if isinstance(raw, dict) else raw[2])
         )

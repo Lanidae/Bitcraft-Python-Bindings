@@ -11,7 +11,7 @@ from .world_gen_biome_definition import WorldGenBiomeDefinition
 @dataclass
 class WorldGenBiomesMapDefinition:
     biomes: list = field(default_factory=list)
-    values: object = 0
+    values: bytes = b''
 
     @classmethod
     def from_row(cls, raw) -> 'WorldGenBiomesMapDefinition':

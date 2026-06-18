@@ -13,7 +13,7 @@ class PlayerRetrieveLostItemRequest:
     is_cargo: bool = False
     durability: int = 0
     target_inventory_entity_id: int = 0
-    target_inventory_index: int | None = None
+    target_inventory_index: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'PlayerRetrieveLostItemRequest':

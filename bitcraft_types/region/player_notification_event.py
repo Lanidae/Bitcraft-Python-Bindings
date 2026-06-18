@@ -14,7 +14,7 @@ class PlayerNotificationEvent:
     scheduled_at: object = 0
     player_entity_id: int = 0
     message: str = ''
-    severity: int = 0
+    severity: NotificationSeverity = 0
 
     @classmethod
     def from_row(cls, raw) -> 'PlayerNotificationEvent':
@@ -25,5 +25,5 @@ class PlayerNotificationEvent:
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             player_entity_id=(raw.get('player_entity_id') if isinstance(raw, dict) else raw[2]),
             message=(raw.get('message') if isinstance(raw, dict) else raw[3]),
-            severity=(raw.get('severity') if isinstance(raw, dict) else raw[4])
+            severity=NotificationSeverity.from_row((raw.get('severity') if isinstance(raw, dict) else raw[4]))
         )

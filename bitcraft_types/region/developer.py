@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class Developer:
-    identity: str = 0
+    identity: object = 0
     developer_name: str = ''
     service_name: str = ''
     email: str = ''
@@ -19,7 +19,7 @@ class Developer:
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
+            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
             developer_name=(raw.get('developer_name') if isinstance(raw, dict) else raw[1]),
             service_name=(raw.get('service_name') if isinstance(raw, dict) else raw[2]),
             email=(raw.get('email') if isinstance(raw, dict) else raw[3]),

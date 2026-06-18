@@ -15,8 +15,8 @@ class AttackImpactTimerMigrated:
     attacker_entity_id: int = 0
     defender_entity_id: int = 0
     combat_action_id: int = 0
-    attacker_type: int = 0
-    defender_type: int = 0
+    attacker_type: EntityType = 0
+    defender_type: EntityType = 0
     main_attack: bool = False
 
     @classmethod
@@ -29,7 +29,7 @@ class AttackImpactTimerMigrated:
             attacker_entity_id=(raw.get('attacker_entity_id') if isinstance(raw, dict) else raw[2]),
             defender_entity_id=(raw.get('defender_entity_id') if isinstance(raw, dict) else raw[3]),
             combat_action_id=(raw.get('combat_action_id') if isinstance(raw, dict) else raw[4]),
-            attacker_type=(raw.get('attacker_type') if isinstance(raw, dict) else raw[5]),
-            defender_type=(raw.get('defender_type') if isinstance(raw, dict) else raw[6]),
+            attacker_type=EntityType.from_row((raw.get('attacker_type') if isinstance(raw, dict) else raw[5])),
+            defender_type=EntityType.from_row((raw.get('defender_type') if isinstance(raw, dict) else raw[6])),
             main_attack=(raw.get('main_attack') if isinstance(raw, dict) else raw[7])
         )

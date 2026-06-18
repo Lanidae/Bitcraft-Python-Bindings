@@ -15,7 +15,7 @@ class DirectMessageState:
     receiver_entity_id: int = 0
     text: str = ''
     timestamp: int = 0
-    language_code: str | None = None
+    language_code: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'DirectMessageState':

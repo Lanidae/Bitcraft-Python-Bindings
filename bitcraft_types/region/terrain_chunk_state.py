@@ -16,8 +16,8 @@ class TerrainChunkState:
     biome_density: list = field(default_factory=list)
     elevations: list = field(default_factory=list)
     water_levels: list = field(default_factory=list)
-    water_body_types: object = 0
-    zoning_types: object = 0
+    water_body_types: bytes = b''
+    zoning_types: bytes = b''
     original_elevations: list = field(default_factory=list)
 
     @classmethod
