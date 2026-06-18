@@ -65,7 +65,7 @@ jobs:
             --global-graph  global_graph.json \
             --token         "${{ secrets.STDB_TOKEN }}" \
             --out           results.json \
-            --delay         1.0 \
+            --delay         0.1 \
             --timeout       60 \
             --skip-tables \
               ActionLogData \
