@@ -71,15 +71,20 @@ jobs:
               ActionLogData \
               ActionLogState \
               ActiveEnvironmentBuffState \
+              AIDebugState \
               AiDebugState \
               AuctionListingState \
               AutoClaimState \
+              BuildingSpawnDesc \
+              ChestRarityDesc \
               CrumbTrailState \
+              DiscoveryTriggerDesc \
               EmpireLogState \
               EnemyScalingState \
               GrantedHubItemState \
+              KnowledgeScrollTypeDesc \
               KnowledgeState \
-              LocationState \
+              LootRarityDesc \
               ModConsequenceState \
               ModEnforcementConfigState \
               ModFlagLevelThresholdState \
@@ -89,7 +94,14 @@ jobs:
               ModThresholdState \
               ModViolationState \
               ModWordReplacementState \
+              MoveValidationParamsDesc \
               MoveValidationStrikeCounterState \
+              OnboardingRewardDesc \
+              ParametersPlayerMoveDesc \
+              PrivateParametersDesc \
+              ResourceGrowthRecipeDesc \
+              SingleResourceToClumpDesc \
+              StageRewardsDesc \
               PartialExperienceState \
               PlayerReportState \
               PlayerTimestampState \
