@@ -203,7 +203,7 @@ def _field_from_row(field_name: str, index: int, ts_type: str, all_types: dict) 
         inner_ts = re.sub(r'^__', '', ts_type.replace('| undefined', '').strip())
         if inner_ts in SDK_WIRE_UNWRAP:
             key          = SDK_WIRE_UNWRAP[inner_ts]
-            inner_from   = f'_v[1][{repr(key)}] if isinstance(_v[1], dict) else _v[1]'
+            inner_from   = f'(_v[1][{repr(key)}] if isinstance(_v[1], dict) else (_v[1][0] if isinstance(_v[1], list) else _v[1]))'
         elif inner_ts in all_types:
             inner_from = f'{inner_ts}.from_row(_v[1])'
         else:
@@ -227,7 +227,7 @@ def _field_from_row(field_name: str, index: int, ts_type: str, all_types: dict) 
     # SDK types that come as dicts on the wire — unwrap them
     if ts_clean in SDK_WIRE_UNWRAP:
         key = SDK_WIRE_UNWRAP[ts_clean]
-        return f'({base}[{repr(key)}] if isinstance({base}, dict) else {base})'
+        return f'({base}[{repr(key)}] if isinstance({base}, dict) else ({base}[0] if isinstance({base}, list) else {base}))'
 
     # Known type
     if ts_clean in all_types:

@@ -31,6 +31,6 @@ class TradeSessionState:
             acceptor_entity_id=(raw.get('acceptor_entity_id') if isinstance(raw, dict) else raw[3]),
             initiator_offer=[TradePocket.from_row(_item) for _item in ((raw.get('initiator_offer') if isinstance(raw, dict) else raw[4]) or [])],
             acceptor_offer=[TradePocket.from_row(_item) for _item in ((raw.get('acceptor_offer') if isinstance(raw, dict) else raw[5]) or [])],
-            updated_at=((raw.get('updated_at') if isinstance(raw, dict) else raw[6])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('updated_at') if isinstance(raw, dict) else raw[6]), dict) else (raw.get('updated_at') if isinstance(raw, dict) else raw[6])),
+            updated_at=((raw.get('updated_at') if isinstance(raw, dict) else raw[6])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('updated_at') if isinstance(raw, dict) else raw[6]), dict) else ((raw.get('updated_at') if isinstance(raw, dict) else raw[6])[0] if isinstance((raw.get('updated_at') if isinstance(raw, dict) else raw[6]), list) else (raw.get('updated_at') if isinstance(raw, dict) else raw[6]))),
             resolution_message=(raw.get('resolution_message') if isinstance(raw, dict) else raw[7])
         )

@@ -23,5 +23,5 @@ class AdminBroadcast:
             title=(raw.get('title') if isinstance(raw, dict) else raw[1]),
             message=(raw.get('message') if isinstance(raw, dict) else raw[2]),
             sign_out=(raw.get('sign_out') if isinstance(raw, dict) else raw[3]),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4]))
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[4])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4])))
         )

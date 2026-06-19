@@ -31,7 +31,7 @@ class ProspectingState:
             ongoing_step=(raw.get('ongoing_step') if isinstance(raw, dict) else raw[4]),
             total_steps=(raw.get('total_steps') if isinstance(raw, dict) else raw[5]),
             next_crumb_angle=[_item for _item in ((raw.get('next_crumb_angle') if isinstance(raw, dict) else raw[6]) or [])],
-            last_prospection_timestamp=((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7]), dict) else (raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7])),
+            last_prospection_timestamp=((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7]), dict) else ((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7])[0] if isinstance((raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7]), list) else (raw.get('last_prospection_timestamp') if isinstance(raw, dict) else raw[7]))),
             contribution=(raw.get('contribution') if isinstance(raw, dict) else raw[8]),
             to_next_node=(raw.get('to_next_node') if isinstance(raw, dict) else raw[9])
         )

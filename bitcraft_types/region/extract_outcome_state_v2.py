@@ -21,7 +21,7 @@ class ExtractOutcomeStateV2:
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             target_entity_id=(raw.get('target_entity_id') if isinstance(raw, dict) else raw[1]),
-            last_timestamp=((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2]), dict) else (raw.get('last_timestamp') if isinstance(raw, dict) else raw[2])),
+            last_timestamp=((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2]), dict) else ((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2])[0] if isinstance((raw.get('last_timestamp') if isinstance(raw, dict) else raw[2]), list) else (raw.get('last_timestamp') if isinstance(raw, dict) else raw[2]))),
             damage=(raw.get('damage') if isinstance(raw, dict) else raw[3]),
             is_crit=(raw.get('is_crit') if isinstance(raw, dict) else raw[4])
         )

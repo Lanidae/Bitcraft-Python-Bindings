@@ -23,5 +23,5 @@ class EmpireFoundryState:
             empire_entity_id=(raw.get('empire_entity_id') if isinstance(raw, dict) else raw[1]),
             hexite_capsules=(raw.get('hexite_capsules') if isinstance(raw, dict) else raw[2]),
             queued=(raw.get('queued') if isinstance(raw, dict) else raw[3]),
-            started=((raw.get('started') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('started') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('started') if isinstance(raw, dict) else raw[4]))
+            started=((raw.get('started') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('started') if isinstance(raw, dict) else raw[4]), dict) else ((raw.get('started') if isinstance(raw, dict) else raw[4])[0] if isinstance((raw.get('started') if isinstance(raw, dict) else raw[4]), list) else (raw.get('started') if isinstance(raw, dict) else raw[4])))
         )

@@ -30,6 +30,6 @@ class AuctionListingState:
             item_type=(raw.get('item_type') if isinstance(raw, dict) else raw[4]),
             price_threshold=(raw.get('price_threshold') if isinstance(raw, dict) else raw[5]),
             quantity=(raw.get('quantity') if isinstance(raw, dict) else raw[6]),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[7])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[7]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[7])),
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[7])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[7]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[7])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[7]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[7]))),
             stored_coins=(raw.get('stored_coins') if isinstance(raw, dict) else raw[8])
         )

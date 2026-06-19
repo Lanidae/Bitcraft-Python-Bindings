@@ -32,6 +32,6 @@ class ProgressiveActionState:
             craft_count=(raw.get('craft_count') if isinstance(raw, dict) else raw[5]),
             last_crit_outcome=(raw.get('last_crit_outcome') if isinstance(raw, dict) else raw[6]),
             owner_entity_id=(raw.get('owner_entity_id') if isinstance(raw, dict) else raw[7]),
-            lock_expiration=((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8]), dict) else (raw.get('lock_expiration') if isinstance(raw, dict) else raw[8])),
+            lock_expiration=((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8]), dict) else ((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8])[0] if isinstance((raw.get('lock_expiration') if isinstance(raw, dict) else raw[8]), list) else (raw.get('lock_expiration') if isinstance(raw, dict) else raw[8]))),
             preparation=(raw.get('preparation') if isinstance(raw, dict) else raw[9])
         )

@@ -16,6 +16,6 @@ class ReplaceIdentityMsg:
         if raw is None:
             return cls()
         return cls(
-            old_identity=((raw.get('old_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('old_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('old_identity') if isinstance(raw, dict) else raw[0])),
-            new_identity=((raw.get('new_identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('new_identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('new_identity') if isinstance(raw, dict) else raw[1]))
+            old_identity=((raw.get('old_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('old_identity') if isinstance(raw, dict) else raw[0]), dict) else ((raw.get('old_identity') if isinstance(raw, dict) else raw[0])[0] if isinstance((raw.get('old_identity') if isinstance(raw, dict) else raw[0]), list) else (raw.get('old_identity') if isinstance(raw, dict) else raw[0]))),
+            new_identity=((raw.get('new_identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('new_identity') if isinstance(raw, dict) else raw[1]), dict) else ((raw.get('new_identity') if isinstance(raw, dict) else raw[1])[0] if isinstance((raw.get('new_identity') if isinstance(raw, dict) else raw[1]), list) else (raw.get('new_identity') if isinstance(raw, dict) else raw[1])))
         )

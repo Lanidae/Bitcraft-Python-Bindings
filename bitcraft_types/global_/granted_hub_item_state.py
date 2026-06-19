@@ -22,7 +22,7 @@ class GrantedHubItemState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[1])),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[1]), dict) else ((raw.get('identity') if isinstance(raw, dict) else raw[1])[0] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[1]), list) else (raw.get('identity') if isinstance(raw, dict) else raw[1]))),
             item_type=HubItemType.from_row((raw.get('item_type') if isinstance(raw, dict) else raw[2])),
             item_id=(raw.get('item_id') if isinstance(raw, dict) else raw[3]),
             balance=(raw.get('balance') if isinstance(raw, dict) else raw[4])

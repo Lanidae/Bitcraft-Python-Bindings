@@ -18,6 +18,6 @@ class CombatImmunityState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            immunity_end_timestamp=((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1])),
+            immunity_end_timestamp=((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1]), dict) else ((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1])[0] if isinstance((raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1]), list) else (raw.get('immunity_end_timestamp') if isinstance(raw, dict) else raw[1]))),
             crumb_trail_entity_id=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('crumb_trail_entity_id') if isinstance(raw, dict) else raw[2]))
         )

@@ -17,5 +17,5 @@ class PlayerTimestampState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[1]))
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[1]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[1])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[1]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[1])))
         )

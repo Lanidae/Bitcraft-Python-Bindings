@@ -31,5 +31,5 @@ class RentState:
             paid_rent=(raw.get('paid_rent') if isinstance(raw, dict) else raw[5]),
             active=(raw.get('active') if isinstance(raw, dict) else raw[6]),
             defaulted=(raw.get('defaulted') if isinstance(raw, dict) else raw[7]),
-            eviction_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else _v[1]))((raw.get('eviction_timestamp') if isinstance(raw, dict) else raw[8]))
+            eviction_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else ((_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else (_v[1][0] if isinstance(_v[1], list) else _v[1]))))((raw.get('eviction_timestamp') if isinstance(raw, dict) else raw[8]))
         )

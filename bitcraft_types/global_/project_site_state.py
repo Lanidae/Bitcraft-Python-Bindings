@@ -35,5 +35,5 @@ class ProjectSiteState:
             last_crit_outcome=(raw.get('last_crit_outcome') if isinstance(raw, dict) else raw[6]),
             owner_id=(raw.get('owner_id') if isinstance(raw, dict) else raw[7]),
             direction=(raw.get('direction') if isinstance(raw, dict) else raw[8]),
-            last_hit_timestamp=((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9]), dict) else (raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9]))
+            last_hit_timestamp=((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9]), dict) else ((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9])[0] if isinstance((raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9]), list) else (raw.get('last_hit_timestamp') if isinstance(raw, dict) else raw[9])))
         )

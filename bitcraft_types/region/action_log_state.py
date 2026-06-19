@@ -31,6 +31,6 @@ class ActionLogState:
             subject_name=(raw.get('subject_name') if isinstance(raw, dict) else raw[3]),
             subject_type=ActionLogSubjectType.from_row((raw.get('subject_type') if isinstance(raw, dict) else raw[4])),
             data=ActionLogData.from_row((raw.get('data') if isinstance(raw, dict) else raw[5])),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[6])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[6]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[6])),
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[6])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[6]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[6])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[6]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[6]))),
             days_since_epoch=(raw.get('days_since_epoch') if isinstance(raw, dict) else raw[7])
         )

@@ -20,7 +20,7 @@ class GrantHubItemMsg:
         if raw is None:
             return cls()
         return cls(
-            player_identity=((raw.get('player_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('player_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('player_identity') if isinstance(raw, dict) else raw[0])),
+            player_identity=((raw.get('player_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('player_identity') if isinstance(raw, dict) else raw[0]), dict) else ((raw.get('player_identity') if isinstance(raw, dict) else raw[0])[0] if isinstance((raw.get('player_identity') if isinstance(raw, dict) else raw[0]), list) else (raw.get('player_identity') if isinstance(raw, dict) else raw[0]))),
             item_type=HubItemType.from_row((raw.get('item_type') if isinstance(raw, dict) else raw[1])),
             item_id=(raw.get('item_id') if isinstance(raw, dict) else raw[2]),
             quantity=(raw.get('quantity') if isinstance(raw, dict) else raw[3])

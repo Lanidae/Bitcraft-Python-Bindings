@@ -27,6 +27,6 @@ class EnemyState:
             herd_entity_id=(raw.get('herd_entity_id') if isinstance(raw, dict) else raw[1]),
             direction=(raw.get('direction') if isinstance(raw, dict) else raw[2]),
             status=EnemyStatus.from_row((raw.get('status') if isinstance(raw, dict) else raw[3])),
-            last_ranged_attack_timestamp=((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4])),
+            last_ranged_attack_timestamp=((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4]), dict) else ((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4])[0] if isinstance((raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4]), list) else (raw.get('last_ranged_attack_timestamp') if isinstance(raw, dict) else raw[4]))),
             enemy_type=EnemyType.from_row((raw.get('enemy_type') if isinstance(raw, dict) else raw[5]))
         )

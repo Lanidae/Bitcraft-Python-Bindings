@@ -16,6 +16,6 @@ class UserUpdateRegionMsg:
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else ((raw.get('identity') if isinstance(raw, dict) else raw[0])[0] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), list) else (raw.get('identity') if isinstance(raw, dict) else raw[0]))),
             region_id=(raw.get('region_id') if isinstance(raw, dict) else raw[1])
         )

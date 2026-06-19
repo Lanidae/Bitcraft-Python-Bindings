@@ -25,5 +25,5 @@ class EmpireNodeSiegeState:
             empire_entity_id=(raw.get('empire_entity_id') if isinstance(raw, dict) else raw[2]),
             energy=(raw.get('energy') if isinstance(raw, dict) else raw[3]),
             active=(raw.get('active') if isinstance(raw, dict) else raw[4]),
-            start_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else _v[1]))((raw.get('start_timestamp') if isinstance(raw, dict) else raw[5]))
+            start_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else ((_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else (_v[1][0] if isinstance(_v[1], list) else _v[1]))))((raw.get('start_timestamp') if isinstance(raw, dict) else raw[5]))
         )

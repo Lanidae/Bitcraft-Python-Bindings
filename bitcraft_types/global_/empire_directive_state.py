@@ -19,5 +19,5 @@ class EmpireDirectiveState:
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             directive_message=(raw.get('directive_message') if isinstance(raw, dict) else raw[1]),
-            directive_message_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else _v[1]))((raw.get('directive_message_timestamp') if isinstance(raw, dict) else raw[2]))
+            directive_message_timestamp=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else ((_v[1]['__timestamp_micros_since_unix_epoch__'] if isinstance(_v[1], dict) else (_v[1][0] if isinstance(_v[1], list) else _v[1]))))((raw.get('directive_message_timestamp') if isinstance(raw, dict) else raw[2]))
         )

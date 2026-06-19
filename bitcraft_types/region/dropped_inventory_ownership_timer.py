@@ -21,5 +21,5 @@ class DroppedInventoryOwnershipTimer:
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[2]),
-            started_at=((raw.get('started_at') if isinstance(raw, dict) else raw[3])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('started_at') if isinstance(raw, dict) else raw[3]), dict) else (raw.get('started_at') if isinstance(raw, dict) else raw[3]))
+            started_at=((raw.get('started_at') if isinstance(raw, dict) else raw[3])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('started_at') if isinstance(raw, dict) else raw[3]), dict) else ((raw.get('started_at') if isinstance(raw, dict) else raw[3])[0] if isinstance((raw.get('started_at') if isinstance(raw, dict) else raw[3]), list) else (raw.get('started_at') if isinstance(raw, dict) else raw[3])))
         )

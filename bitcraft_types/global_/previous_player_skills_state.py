@@ -18,6 +18,6 @@ class PreviousPlayerSkillsState:
         if raw is None:
             return cls()
         return cls(
-            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else ((raw.get('identity') if isinstance(raw, dict) else raw[0])[0] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), list) else (raw.get('identity') if isinstance(raw, dict) else raw[0]))),
             experience_stacks=[ExperienceStack.from_row(_item) for _item in ((raw.get('experience_stacks') if isinstance(raw, dict) else raw[1]) or [])]
         )

@@ -25,5 +25,5 @@ class GlobalSearchState:
             found_entity_name=(raw.get('found_entity_name') if isinstance(raw, dict) else raw[2]),
             x=(raw.get('x') if isinstance(raw, dict) else raw[3]),
             z=(raw.get('z') if isinstance(raw, dict) else raw[4]),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[5])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[5]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[5]))
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[5])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[5]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[5])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[5]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[5])))
         )

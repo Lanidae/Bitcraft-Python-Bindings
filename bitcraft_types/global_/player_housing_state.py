@@ -27,7 +27,7 @@ class PlayerHousingState:
             network_entity_id=(raw.get('network_entity_id') if isinstance(raw, dict) else raw[2]),
             exit_portal_entity_id=(raw.get('exit_portal_entity_id') if isinstance(raw, dict) else raw[3]),
             rank=(raw.get('rank') if isinstance(raw, dict) else raw[4]),
-            locked_until=((raw.get('locked_until') if isinstance(raw, dict) else raw[5])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('locked_until') if isinstance(raw, dict) else raw[5]), dict) else (raw.get('locked_until') if isinstance(raw, dict) else raw[5])),
+            locked_until=((raw.get('locked_until') if isinstance(raw, dict) else raw[5])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('locked_until') if isinstance(raw, dict) else raw[5]), dict) else ((raw.get('locked_until') if isinstance(raw, dict) else raw[5])[0] if isinstance((raw.get('locked_until') if isinstance(raw, dict) else raw[5]), list) else (raw.get('locked_until') if isinstance(raw, dict) else raw[5]))),
             is_empty=(raw.get('is_empty') if isinstance(raw, dict) else raw[6]),
             region_index=(raw.get('region_index') if isinstance(raw, dict) else raw[7])
         )

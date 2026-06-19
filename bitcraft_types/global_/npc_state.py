@@ -29,7 +29,7 @@ class NpcState:
             npc_type=NpcType.from_row((raw.get('npc_type') if isinstance(raw, dict) else raw[1])),
             direction=(raw.get('direction') if isinstance(raw, dict) else raw[2]),
             building_entity_id=(raw.get('building_entity_id') if isinstance(raw, dict) else raw[3]),
-            next_action_timestamp=((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4])),
+            next_action_timestamp=((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4]), dict) else ((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4])[0] if isinstance((raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4]), list) else (raw.get('next_action_timestamp') if isinstance(raw, dict) else raw[4]))),
             move_duration=(raw.get('move_duration') if isinstance(raw, dict) else raw[5]),
             started_moving=(raw.get('started_moving') if isinstance(raw, dict) else raw[6]),
             previous_buildings=[_item for _item in ((raw.get('previous_buildings') if isinstance(raw, dict) else raw[7]) or [])],

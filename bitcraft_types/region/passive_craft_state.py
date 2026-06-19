@@ -27,7 +27,7 @@ class PassiveCraftState:
             owner_entity_id=(raw.get('owner_entity_id') if isinstance(raw, dict) else raw[1]),
             recipe_id=(raw.get('recipe_id') if isinstance(raw, dict) else raw[2]),
             building_entity_id=(raw.get('building_entity_id') if isinstance(raw, dict) else raw[3]),
-            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4])),
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else ((raw.get('timestamp') if isinstance(raw, dict) else raw[4])[0] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), list) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4]))),
             status=PassiveCraftStatus.from_row((raw.get('status') if isinstance(raw, dict) else raw[5])),
             slot=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('slot') if isinstance(raw, dict) else raw[6]))
         )
