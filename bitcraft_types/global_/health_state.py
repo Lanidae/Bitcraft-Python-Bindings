@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class HealthState:
     entity_id: int = 0
-    last_health_decrease_timestamp: object = 0
+    last_health_decrease_timestamp: int = 0
     health: float = 0.0
     died_timestamp: int = 0
 
@@ -19,7 +19,7 @@ class HealthState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            last_health_decrease_timestamp=(raw.get('last_health_decrease_timestamp') if isinstance(raw, dict) else raw[1]),
+            last_health_decrease_timestamp=((raw.get('last_health_decrease_timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_health_decrease_timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('last_health_decrease_timestamp') if isinstance(raw, dict) else raw[1])),
             health=(raw.get('health') if isinstance(raw, dict) else raw[2]),
             died_timestamp=(raw.get('died_timestamp') if isinstance(raw, dict) else raw[3])
         )

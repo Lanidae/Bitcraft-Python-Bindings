@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class UnclaimedShardsState:
-    identity: object = 0
+    identity: str = 0
     shards: int = 0
 
     @classmethod
@@ -16,6 +16,6 @@ class UnclaimedShardsState:
         if raw is None:
             return cls()
         return cls(
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
             shards=(raw.get('shards') if isinstance(raw, dict) else raw[1])
         )

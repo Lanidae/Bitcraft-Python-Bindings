@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class PreviousPlayerUsernameState:
-    identity: object = 0
+    identity: str = 0
     name: str = ''
     lower_case_name: str = ''
 
@@ -17,7 +17,7 @@ class PreviousPlayerUsernameState:
         if raw is None:
             return cls()
         return cls(
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
             name=(raw.get('name') if isinstance(raw, dict) else raw[1]),
             lower_case_name=(raw.get('lower_case_name') if isinstance(raw, dict) else raw[2])
         )

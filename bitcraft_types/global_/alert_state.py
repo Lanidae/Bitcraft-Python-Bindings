@@ -13,7 +13,7 @@ class AlertState:
     entity_id: int = 0
     player_entity_id: int = 0
     target_entity_id: int = 0
-    end_timestamp: object = 0
+    end_timestamp: int = 0
     alert_type: AlertType = 0
 
     @classmethod
@@ -24,6 +24,6 @@ class AlertState:
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             player_entity_id=(raw.get('player_entity_id') if isinstance(raw, dict) else raw[1]),
             target_entity_id=(raw.get('target_entity_id') if isinstance(raw, dict) else raw[2]),
-            end_timestamp=(raw.get('end_timestamp') if isinstance(raw, dict) else raw[3]),
+            end_timestamp=((raw.get('end_timestamp') if isinstance(raw, dict) else raw[3])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('end_timestamp') if isinstance(raw, dict) else raw[3]), dict) else (raw.get('end_timestamp') if isinstance(raw, dict) else raw[3])),
             alert_type=AlertType.from_row((raw.get('alert_type') if isinstance(raw, dict) else raw[4]))
         )

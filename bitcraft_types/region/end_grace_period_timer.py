@@ -12,7 +12,7 @@ from .grace_period_type import GracePeriodType
 class EndGracePeriodTimer:
     scheduled_id: int = 0
     scheduled_at: object = 0
-    identity: object = 0
+    identity: str = 0
     grace_period_type: GracePeriodType = 0
 
     @classmethod
@@ -22,6 +22,6 @@ class EndGracePeriodTimer:
         return cls(
             scheduled_id=(raw.get('scheduled_id') if isinstance(raw, dict) else raw[0]),
             scheduled_at=(raw.get('scheduled_at') if isinstance(raw, dict) else raw[1]),
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[2]),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[2])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[2]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[2])),
             grace_period_type=GracePeriodType.from_row((raw.get('grace_period_type') if isinstance(raw, dict) else raw[3]))
         )

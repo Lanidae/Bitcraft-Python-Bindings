@@ -58,6 +58,28 @@ def _snake(name: str) -> str:
     return s.lower()
 
 
+# Maps the single-field name in an inline product to the SDK type name.
+# STDB encodes Timestamp/TimeDuration/Identity/ConnectionId as anonymous
+# single-field Product types rather than as named primitives or refs.
+_INLINE_SDK_FIELD_TO_TYPE: dict[str, str] = {
+    '__timestamp_micros_since_unix_epoch__': 'Timestamp',
+    '__time_duration_micros__':              'TimeDuration',
+    '__identity__':                          'Identity',
+    '__connection_id__':                     'ConnectionId',
+}
+
+
+def _get_inline_sdk_type(at: dict) -> str | None:
+    """Return the SDK type name if `at` is a single-field inline Product encoding one."""
+    if 'Product' not in at:
+        return None
+    elements = at['Product'].get('elements', [])
+    if len(elements) != 1:
+        return None
+    field_name = elements[0].get('name', {}).get('some', '')
+    return _INLINE_SDK_FIELD_TO_TYPE.get(field_name)
+
+
 def _is_option(sum_def: dict) -> bool:
     """True if this Sum is the STDB Option<T> pattern: exactly 'some' and 'none' variants."""
     variants = sum_def.get('Sum', {}).get('variants', [])
@@ -139,6 +161,10 @@ class SchemaParser:
             if 'Sum' in ref_def and _is_option(ref_def):
                 inner_at = _option_inner(ref_def)
                 if inner_at is not None:
+                    # Option<InlineSDKType> (e.g. Option<Timestamp> via named Option ref)
+                    sdk_type = _get_inline_sdk_type(inner_at)
+                    if sdk_type:
+                        return None, f'{sdk_type} | undefined', [type_name]
                     # Option<NamedType>
                     if 'Ref' in inner_at:
                         inner_name = self.ref_to_name.get(inner_at['Ref'])
@@ -168,13 +194,23 @@ class SchemaParser:
                     return None, f'{type_name}[]', [type_name]
             return None, 'list', []
 
+        # Inline SDK type (Timestamp, TimeDuration, Identity, ConnectionId)
+        if 'Product' in at:
+            sdk_type = _get_inline_sdk_type(at)
+            if sdk_type:
+                return None, sdk_type, []
+
         # Inline Option (Sum embedded directly in the element, not via Ref)
         if 'Sum' in at and _is_option(at):
             inner_at = _option_inner(at)
-            if inner_at is not None and 'Ref' in inner_at:
-                inner_name = self.ref_to_name.get(inner_at['Ref'])
-                if inner_name:
-                    return None, f'{inner_name} | undefined', [inner_name]
+            if inner_at is not None:
+                sdk_type = _get_inline_sdk_type(inner_at)
+                if sdk_type:
+                    return None, f'{sdk_type} | undefined', []
+                if 'Ref' in inner_at:
+                    inner_name = self.ref_to_name.get(inner_at['Ref'])
+                    if inner_name:
+                        return None, f'{inner_name} | undefined', [inner_name]
             return None, 'object | undefined', []
 
         return None, 'object', []

@@ -9,10 +9,10 @@ from typing import Optional
 @dataclass
 class PremiumPurchaseState:
     entity_id: int = 0
-    identity: object = 0
+    identity: str = 0
     collectible_desc_ids: object | None = None
     price: int = 0
-    timestamp: object = 0
+    timestamp: int = 0
     processed: bool = False
     quantity: int = 0
 
@@ -22,10 +22,10 @@ class PremiumPurchaseState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[1]),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[1])),
             collectible_desc_ids=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('collectible_desc_ids') if isinstance(raw, dict) else raw[2])),
             price=(raw.get('price') if isinstance(raw, dict) else raw[3]),
-            timestamp=(raw.get('timestamp') if isinstance(raw, dict) else raw[4]),
+            timestamp=((raw.get('timestamp') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('timestamp') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('timestamp') if isinstance(raw, dict) else raw[4])),
             processed=(raw.get('processed') if isinstance(raw, dict) else raw[5]),
             quantity=(raw.get('quantity') if isinstance(raw, dict) else raw[6])
         )

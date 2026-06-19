@@ -11,11 +11,11 @@ from .user_moderation_policy import UserModerationPolicy
 @dataclass
 class UserModerationState:
     entity_id: int = 0
-    target_identity: object = 0
-    created_by_identity: object = 0
+    target_identity: str = 0
+    created_by_identity: str = 0
     user_moderation_policy: UserModerationPolicy = 0
-    created_time: object = 0
-    expiration_time: object = 0
+    created_time: int = 0
+    expiration_time: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'UserModerationState':
@@ -23,9 +23,9 @@ class UserModerationState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            target_identity=(raw.get('target_identity') if isinstance(raw, dict) else raw[1]),
-            created_by_identity=(raw.get('created_by_identity') if isinstance(raw, dict) else raw[2]),
+            target_identity=((raw.get('target_identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('target_identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('target_identity') if isinstance(raw, dict) else raw[1])),
+            created_by_identity=((raw.get('created_by_identity') if isinstance(raw, dict) else raw[2])['__identity__'] if isinstance((raw.get('created_by_identity') if isinstance(raw, dict) else raw[2]), dict) else (raw.get('created_by_identity') if isinstance(raw, dict) else raw[2])),
             user_moderation_policy=UserModerationPolicy.from_row((raw.get('user_moderation_policy') if isinstance(raw, dict) else raw[3])),
-            created_time=(raw.get('created_time') if isinstance(raw, dict) else raw[4]),
-            expiration_time=(raw.get('expiration_time') if isinstance(raw, dict) else raw[5])
+            created_time=((raw.get('created_time') if isinstance(raw, dict) else raw[4])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('created_time') if isinstance(raw, dict) else raw[4]), dict) else (raw.get('created_time') if isinstance(raw, dict) else raw[4])),
+            expiration_time=((raw.get('expiration_time') if isinstance(raw, dict) else raw[5])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('expiration_time') if isinstance(raw, dict) else raw[5]), dict) else (raw.get('expiration_time') if isinstance(raw, dict) else raw[5]))
         )

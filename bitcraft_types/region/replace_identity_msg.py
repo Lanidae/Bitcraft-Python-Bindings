@@ -8,14 +8,14 @@ from typing import Optional
 
 @dataclass
 class ReplaceIdentityMsg:
-    old_identity: object = 0
-    new_identity: object = 0
+    old_identity: str = 0
+    new_identity: str = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ReplaceIdentityMsg':
         if raw is None:
             return cls()
         return cls(
-            old_identity=(raw.get('old_identity') if isinstance(raw, dict) else raw[0]),
-            new_identity=(raw.get('new_identity') if isinstance(raw, dict) else raw[1])
+            old_identity=((raw.get('old_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('old_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('old_identity') if isinstance(raw, dict) else raw[0])),
+            new_identity=((raw.get('new_identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('new_identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('new_identity') if isinstance(raw, dict) else raw[1]))
         )

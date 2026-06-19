@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class ServerIdentity:
     version: int = 0
-    identity: object = 0
+    identity: str = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ServerIdentity':
@@ -17,5 +17,5 @@ class ServerIdentity:
             return cls()
         return cls(
             version=(raw.get('version') if isinstance(raw, dict) else raw[0]),
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[1])
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[1])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[1]))
         )

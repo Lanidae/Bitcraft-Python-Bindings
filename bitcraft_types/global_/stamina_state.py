@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class StaminaState:
     entity_id: int = 0
-    last_stamina_decrease_timestamp: object = 0
+    last_stamina_decrease_timestamp: int = 0
     stamina: float = 0.0
 
     @classmethod
@@ -18,6 +18,6 @@ class StaminaState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            last_stamina_decrease_timestamp=(raw.get('last_stamina_decrease_timestamp') if isinstance(raw, dict) else raw[1]),
+            last_stamina_decrease_timestamp=((raw.get('last_stamina_decrease_timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('last_stamina_decrease_timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('last_stamina_decrease_timestamp') if isinstance(raw, dict) else raw[1])),
             stamina=(raw.get('stamina') if isinstance(raw, dict) else raw[2])
         )

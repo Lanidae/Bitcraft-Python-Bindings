@@ -8,7 +8,7 @@ from typing import Optional
 
 @dataclass
 class UserState:
-    identity: object = 0
+    identity: str = 0
     entity_id: int = 0
     can_sign_in: bool = False
 
@@ -17,7 +17,7 @@ class UserState:
         if raw is None:
             return cls()
         return cls(
-            identity=(raw.get('identity') if isinstance(raw, dict) else raw[0]),
+            identity=((raw.get('identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('identity') if isinstance(raw, dict) else raw[0])),
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[1]),
             can_sign_in=(raw.get('can_sign_in') if isinstance(raw, dict) else raw[2])
         )

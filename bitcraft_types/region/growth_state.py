@@ -9,7 +9,7 @@ from typing import Optional
 @dataclass
 class GrowthState:
     entity_id: int = 0
-    end_timestamp: object = 0
+    end_timestamp: int = 0
     growth_recipe_id: int = 0
 
     @classmethod
@@ -18,6 +18,6 @@ class GrowthState:
             return cls()
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
-            end_timestamp=(raw.get('end_timestamp') if isinstance(raw, dict) else raw[1]),
+            end_timestamp=((raw.get('end_timestamp') if isinstance(raw, dict) else raw[1])['__timestamp_micros_since_unix_epoch__'] if isinstance((raw.get('end_timestamp') if isinstance(raw, dict) else raw[1]), dict) else (raw.get('end_timestamp') if isinstance(raw, dict) else raw[1])),
             growth_recipe_id=(raw.get('growth_recipe_id') if isinstance(raw, dict) else raw[2])
         )

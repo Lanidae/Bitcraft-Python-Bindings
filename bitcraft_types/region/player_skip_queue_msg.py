@@ -8,12 +8,12 @@ from typing import Optional
 
 @dataclass
 class PlayerSkipQueueMsg:
-    player_identity: object = 0
+    player_identity: str = 0
 
     @classmethod
     def from_row(cls, raw) -> 'PlayerSkipQueueMsg':
         if raw is None:
             return cls()
         return cls(
-            player_identity=(raw.get('player_identity') if isinstance(raw, dict) else raw[0])
+            player_identity=((raw.get('player_identity') if isinstance(raw, dict) else raw[0])['__identity__'] if isinstance((raw.get('player_identity') if isinstance(raw, dict) else raw[0]), dict) else (raw.get('player_identity') if isinstance(raw, dict) else raw[0]))
         )
