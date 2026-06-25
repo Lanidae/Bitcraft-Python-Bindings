@@ -40,6 +40,7 @@ class ProspectingDesc:
     icon_asset_path: str = ''
     experience_per_node: ExperienceStackF32 = 0
     pct_nodes_for_max_contribution: float = 0.0
+    single_contribution_only: bool = False
 
     @classmethod
     def from_row(cls, raw) -> 'ProspectingDesc':
@@ -74,5 +75,6 @@ class ProspectingDesc:
             resource_uncovered_by_someone_else_message=(raw.get('resource_uncovered_by_someone_else_message') if isinstance(raw, dict) else raw[25]),
             icon_asset_path=(raw.get('icon_asset_path') if isinstance(raw, dict) else raw[26]),
             experience_per_node=ExperienceStackF32.from_row((raw.get('experience_per_node') if isinstance(raw, dict) else raw[27])),
-            pct_nodes_for_max_contribution=(raw.get('pct_nodes_for_max_contribution') if isinstance(raw, dict) else raw[28])
+            pct_nodes_for_max_contribution=(raw.get('pct_nodes_for_max_contribution') if isinstance(raw, dict) else raw[28]),
+            single_contribution_only=(raw.get('single_contribution_only') if isinstance(raw, dict) else raw[29])
         )

@@ -33,6 +33,8 @@ class CargoDesc:
     tag: str = ''
     rarity: Rarity = 0
     not_pickupable: bool = False
+    cannot_store_in_buildings: bool = False
+    cannot_store_in_deployables: bool = False
 
     @classmethod
     def from_row(cls, raw) -> 'CargoDesc':
@@ -61,5 +63,7 @@ class CargoDesc:
             tier=(raw.get('tier') if isinstance(raw, dict) else raw[19]),
             tag=(raw.get('tag') if isinstance(raw, dict) else raw[20]),
             rarity=Rarity.from_row((raw.get('rarity') if isinstance(raw, dict) else raw[21])),
-            not_pickupable=(raw.get('not_pickupable') if isinstance(raw, dict) else raw[22])
+            not_pickupable=(raw.get('not_pickupable') if isinstance(raw, dict) else raw[22]),
+            cannot_store_in_buildings=(raw.get('cannot_store_in_buildings') if isinstance(raw, dict) else raw[23]),
+            cannot_store_in_deployables=(raw.get('cannot_store_in_deployables') if isinstance(raw, dict) else raw[24])
         )
