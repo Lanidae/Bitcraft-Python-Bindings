@@ -35,6 +35,7 @@ from .building_despawn_timer import BuildingDespawnTimer
 from .building_function import BuildingFunction
 from .building_function_type_mapping_desc import BuildingFunctionTypeMappingDesc
 from .building_interaction_level import BuildingInteractionLevel
+from .building_map_icon_desc import BuildingMapIconDesc
 from .building_nickname_state import BuildingNicknameState
 from .building_nickname_state_op import BuildingNicknameStateOp
 from .building_portal_desc import BuildingPortalDesc

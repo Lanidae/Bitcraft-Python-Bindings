@@ -32,6 +32,8 @@ class CollectibleType(IntEnum):
     HOUSINGWALLS = 21
     HOUSINGFLOOR = 22
     DEPLOYABLEAPPEARANCEOVERRIDE = 23
+    FACEACCESSORY = 24
+    FACIALHAIR = 25
 
 
     @classmethod

@@ -17,6 +17,7 @@ class TerraformRecipeDesc:
     time_per_action: float = 0.0
     tool_mesh_index: int = 0
     recipe_performance_id: int = 0
+    output_item_stacks: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'TerraformRecipeDesc':
@@ -29,5 +30,6 @@ class TerraformRecipeDesc:
             stamina_per_action=(raw.get('stamina_per_action') if isinstance(raw, dict) else raw[3]),
             time_per_action=(raw.get('time_per_action') if isinstance(raw, dict) else raw[4]),
             tool_mesh_index=(raw.get('tool_mesh_index') if isinstance(raw, dict) else raw[5]),
-            recipe_performance_id=(raw.get('recipe_performance_id') if isinstance(raw, dict) else raw[6])
+            recipe_performance_id=(raw.get('recipe_performance_id') if isinstance(raw, dict) else raw[6]),
+            output_item_stacks=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('output_item_stacks') if isinstance(raw, dict) else raw[7]))
         )
