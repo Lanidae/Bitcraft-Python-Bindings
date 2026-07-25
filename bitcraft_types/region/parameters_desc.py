@@ -104,6 +104,8 @@ class ParametersDesc:
     hexite_capsule_currency_cost: int = 0
     prospecting_herd_immunity_secs: int = 0
     rp_walk_speed: float = 0.0
+    traveler_task_weekly_credits: object | None = None
+    traveler_task_reroll_credit_cost: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ParametersDesc':
@@ -203,5 +205,7 @@ class ParametersDesc:
             empire_move_capital_currency_cost=(raw.get('empire_move_capital_currency_cost') if isinstance(raw, dict) else raw[90]),
             hexite_capsule_currency_cost=(raw.get('hexite_capsule_currency_cost') if isinstance(raw, dict) else raw[91]),
             prospecting_herd_immunity_secs=(raw.get('prospecting_herd_immunity_secs') if isinstance(raw, dict) else raw[92]),
-            rp_walk_speed=(raw.get('rp_walk_speed') if isinstance(raw, dict) else raw[93])
+            rp_walk_speed=(raw.get('rp_walk_speed') if isinstance(raw, dict) else raw[93]),
+            traveler_task_weekly_credits=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('traveler_task_weekly_credits') if isinstance(raw, dict) else raw[94])),
+            traveler_task_reroll_credit_cost=(raw.get('traveler_task_reroll_credit_cost') if isinstance(raw, dict) else raw[95])
         )

@@ -37,6 +37,13 @@ class ResourceDesc:
     on_destroy_yield_resource_min_radius: int = 0
     on_destroy_yield_resource_max_radius: int = 0
     light_radius: int = 0
+    spawns_on_land: bool = False
+    land_elevation_min: int = 0
+    land_elevation_max: int = 0
+    spawns_in_water: bool = False
+    water_depth_min: int = 0
+    water_depth_max: int = 0
+    max_elevation_delta: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ResourceDesc':
@@ -67,5 +74,12 @@ class ResourceDesc:
             on_destroy_yield_resource_chance=(raw.get('on_destroy_yield_resource_chance') if isinstance(raw, dict) else raw[21]),
             on_destroy_yield_resource_min_radius=(raw.get('on_destroy_yield_resource_min_radius') if isinstance(raw, dict) else raw[22]),
             on_destroy_yield_resource_max_radius=(raw.get('on_destroy_yield_resource_max_radius') if isinstance(raw, dict) else raw[23]),
-            light_radius=(raw.get('light_radius') if isinstance(raw, dict) else raw[24])
+            light_radius=(raw.get('light_radius') if isinstance(raw, dict) else raw[24]),
+            spawns_on_land=(raw.get('spawns_on_land') if isinstance(raw, dict) else raw[25]),
+            land_elevation_min=(raw.get('land_elevation_min') if isinstance(raw, dict) else raw[26]),
+            land_elevation_max=(raw.get('land_elevation_max') if isinstance(raw, dict) else raw[27]),
+            spawns_in_water=(raw.get('spawns_in_water') if isinstance(raw, dict) else raw[28]),
+            water_depth_min=(raw.get('water_depth_min') if isinstance(raw, dict) else raw[29]),
+            water_depth_max=(raw.get('water_depth_max') if isinstance(raw, dict) else raw[30]),
+            max_elevation_delta=(raw.get('max_elevation_delta') if isinstance(raw, dict) else raw[31])
         )

@@ -33,6 +33,8 @@ class PlaceableInteractionDesc:
     recipe_performance_id: int = 0
     on_destroy_spawned_placeable_id: int = 0
     on_destroy_spawned_placeable_chance: float = 0.0
+    on_destroy_outcomes: object | None = None
+    self_buffs: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'PlaceableInteractionDesc':
@@ -57,5 +59,7 @@ class PlaceableInteractionDesc:
             power_multiplier=(raw.get('power_multiplier') if isinstance(raw, dict) else raw[15]),
             recipe_performance_id=(raw.get('recipe_performance_id') if isinstance(raw, dict) else raw[16]),
             on_destroy_spawned_placeable_id=(raw.get('on_destroy_spawned_placeable_id') if isinstance(raw, dict) else raw[17]),
-            on_destroy_spawned_placeable_chance=(raw.get('on_destroy_spawned_placeable_chance') if isinstance(raw, dict) else raw[18])
+            on_destroy_spawned_placeable_chance=(raw.get('on_destroy_spawned_placeable_chance') if isinstance(raw, dict) else raw[18]),
+            on_destroy_outcomes=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('on_destroy_outcomes') if isinstance(raw, dict) else raw[19])),
+            self_buffs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('self_buffs') if isinstance(raw, dict) else raw[20]))
         )

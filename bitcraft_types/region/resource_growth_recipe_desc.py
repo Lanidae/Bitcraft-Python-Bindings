@@ -12,6 +12,9 @@ class ResourceGrowthRecipeDesc:
     resource_id: int = 0
     time: list = field(default_factory=list)
     grown_resource_id: int = 0
+    grown_resource_chance: float = 0.0
+    grown_resource_min_radius: int = 0
+    grown_resource_max_radius: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ResourceGrowthRecipeDesc':
@@ -21,5 +24,8 @@ class ResourceGrowthRecipeDesc:
             id=(raw.get('id') if isinstance(raw, dict) else raw[0]),
             resource_id=(raw.get('resource_id') if isinstance(raw, dict) else raw[1]),
             time=[_item for _item in ((raw.get('time') if isinstance(raw, dict) else raw[2]) or [])],
-            grown_resource_id=(raw.get('grown_resource_id') if isinstance(raw, dict) else raw[3])
+            grown_resource_id=(raw.get('grown_resource_id') if isinstance(raw, dict) else raw[3]),
+            grown_resource_chance=(raw.get('grown_resource_chance') if isinstance(raw, dict) else raw[4]),
+            grown_resource_min_radius=(raw.get('grown_resource_min_radius') if isinstance(raw, dict) else raw[5]),
+            grown_resource_max_radius=(raw.get('grown_resource_max_radius') if isinstance(raw, dict) else raw[6])
         )

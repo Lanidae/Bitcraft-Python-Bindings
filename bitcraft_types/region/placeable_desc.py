@@ -20,6 +20,12 @@ class PlaceableDesc:
     icon_asset_name: str = ''
     max_health: int = 0
     visible_to_others: bool = False
+    spawns_on_land: bool = False
+    land_elevation_min: int = 0
+    land_elevation_max: int = 0
+    spawns_in_water: bool = False
+    water_depth_min: int = 0
+    water_depth_max: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'PlaceableDesc':
@@ -35,5 +41,11 @@ class PlaceableDesc:
             model_asset_name=(raw.get('model_asset_name') if isinstance(raw, dict) else raw[6]),
             icon_asset_name=(raw.get('icon_asset_name') if isinstance(raw, dict) else raw[7]),
             max_health=(raw.get('max_health') if isinstance(raw, dict) else raw[8]),
-            visible_to_others=(raw.get('visible_to_others') if isinstance(raw, dict) else raw[9])
+            visible_to_others=(raw.get('visible_to_others') if isinstance(raw, dict) else raw[9]),
+            spawns_on_land=(raw.get('spawns_on_land') if isinstance(raw, dict) else raw[10]),
+            land_elevation_min=(raw.get('land_elevation_min') if isinstance(raw, dict) else raw[11]),
+            land_elevation_max=(raw.get('land_elevation_max') if isinstance(raw, dict) else raw[12]),
+            spawns_in_water=(raw.get('spawns_in_water') if isinstance(raw, dict) else raw[13]),
+            water_depth_min=(raw.get('water_depth_min') if isinstance(raw, dict) else raw[14]),
+            water_depth_max=(raw.get('water_depth_max') if isinstance(raw, dict) else raw[15])
         )

@@ -8,6 +8,7 @@ from .action_bar_state import ActionBarState
 from .action_cooldown import ActionCooldown
 from .action_log_data import ActionLogData
 from .action_log_subject_type import ActionLogSubjectType
+from .active_connection_state import ActiveConnectionState
 from .admin_broadcast import AdminBroadcast
 from .admin_broadcast_message_msg import AdminBroadcastMessageMsg
 from .alert_desc import AlertDesc
@@ -206,6 +207,7 @@ from .message_contents import MessageContents
 from .message_contents_v2 import MessageContentsV2
 from .message_contents_v3 import MessageContentsV3
 from .message_contents_v4 import MessageContentsV4
+from .message_contents_v5 import MessageContentsV5
 from .minimum_client_version import MinimumClientVersion
 from .mobile_entity_state import MobileEntityState
 from .mod_consequence_state import ModConsequenceState
@@ -244,6 +246,8 @@ from .permission_state import PermissionState
 from .pillar_shaping_state import PillarShapingState
 from .placeable_group_desc import PlaceableGroupDesc
 from .placeable_growth_outcome import PlaceableGrowthOutcome
+from .placeable_growth_outcome_v2 import PlaceableGrowthOutcomeV2
+from .placeable_self_buff_chance import PlaceableSelfBuffChance
 from .placeable_state import PlaceableState
 from .player_action_layer import PlayerActionLayer
 from .player_action_result import PlayerActionResult
@@ -337,6 +341,7 @@ from .toolbar_state import ToolbarState
 from .trade_session_status import TradeSessionStatus
 from .transfer_player_housing_msg import TransferPlayerHousingMsg
 from .translation_corrections import TranslationCorrections
+from .traveler_task_credit_state import TravelerTaskCreditState
 from .traveler_task_knowledge_requirement_desc import TravelerTaskKnowledgeRequirementDesc
 from .traveler_task_state import TravelerTaskState
 from .traversal_settings import TraversalSettings
@@ -405,11 +410,13 @@ from .inter_module_message import InterModuleMessage
 from .inter_module_message_v2 import InterModuleMessageV2
 from .inter_module_message_v3 import InterModuleMessageV3
 from .inter_module_message_v4 import InterModuleMessageV4
+from .inter_module_message_v5 import InterModuleMessageV5
 from .private_parameters_desc import PrivateParametersDesc
 from .player_notification_event import PlayerNotificationEvent
 from .building_spawn_desc import BuildingSpawnDesc
 from .interior_spawn_desc import InteriorSpawnDesc
 from .npc_state import NpcState
+from .traveler_weekly_task_credits import TravelerWeeklyTaskCredits
 from .ai_debug_state import AIDebugState
 from .claim_create_empire_settlement_msg import ClaimCreateEmpireSettlementMsg
 from .claim_local_state import ClaimLocalState
@@ -527,3 +534,4 @@ from .transfer_player_msg import TransferPlayerMsg
 from .transfer_player_msg_v2 import TransferPlayerMsgV2
 from .transfer_player_msg_v3 import TransferPlayerMsgV3
 from .transfer_player_msg_v4 import TransferPlayerMsgV4
+from .transfer_player_msg_v5 import TransferPlayerMsgV5

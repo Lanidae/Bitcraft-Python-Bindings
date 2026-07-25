@@ -15,6 +15,7 @@ class PlaceableGrowthDesc:
     time: list = field(default_factory=list)
     outcomes: list = field(default_factory=list)
     show_time_left: bool = False
+    outcomes_v2: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'PlaceableGrowthDesc':
@@ -25,5 +26,6 @@ class PlaceableGrowthDesc:
             placeable_id=(raw.get('placeable_id') if isinstance(raw, dict) else raw[1]),
             time=[_item for _item in ((raw.get('time') if isinstance(raw, dict) else raw[2]) or [])],
             outcomes=[PlaceableGrowthOutcome.from_row(_item) for _item in ((raw.get('outcomes') if isinstance(raw, dict) else raw[3]) or [])],
-            show_time_left=(raw.get('show_time_left') if isinstance(raw, dict) else raw[4])
+            show_time_left=(raw.get('show_time_left') if isinstance(raw, dict) else raw[4]),
+            outcomes_v2=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('outcomes_v2') if isinstance(raw, dict) else raw[5]))
         )
