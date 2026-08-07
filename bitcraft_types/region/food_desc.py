@@ -19,6 +19,8 @@ class FoodDesc:
     teleportation_energy: float = 0.0
     consumable_while_in_combat: bool = False
     buffs: list = field(default_factory=list)
+    auto_consume: bool = False
+    output_item_stacks: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'FoodDesc':
@@ -33,5 +35,7 @@ class FoodDesc:
             hunger=(raw.get('hunger') if isinstance(raw, dict) else raw[5]),
             teleportation_energy=(raw.get('teleportation_energy') if isinstance(raw, dict) else raw[6]),
             consumable_while_in_combat=(raw.get('consumable_while_in_combat') if isinstance(raw, dict) else raw[7]),
-            buffs=[BuffEffect.from_row(_item) for _item in ((raw.get('buffs') if isinstance(raw, dict) else raw[8]) or [])]
+            buffs=[BuffEffect.from_row(_item) for _item in ((raw.get('buffs') if isinstance(raw, dict) else raw[8]) or [])],
+            auto_consume=(raw.get('auto_consume') if isinstance(raw, dict) else raw[9]),
+            output_item_stacks=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('output_item_stacks') if isinstance(raw, dict) else raw[10]))
         )

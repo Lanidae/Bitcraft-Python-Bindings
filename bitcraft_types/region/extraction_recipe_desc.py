@@ -38,6 +38,7 @@ class ExtractionRecipeDesc:
     show_in_progression: bool = False
     empire_permission_required: EmpirePermission | None = None
     spawned_placeables: object | None = None
+    self_buffs: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ExtractionRecipeDesc':
@@ -66,5 +67,6 @@ class ExtractionRecipeDesc:
             empire_rank_requirement=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('empire_rank_requirement') if isinstance(raw, dict) else raw[19])),
             show_in_progression=(raw.get('show_in_progression') if isinstance(raw, dict) else raw[20]),
             empire_permission_required=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (EmpirePermission.from_row(_v[1])))((raw.get('empire_permission_required') if isinstance(raw, dict) else raw[21])),
-            spawned_placeables=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('spawned_placeables') if isinstance(raw, dict) else raw[22]))
+            spawned_placeables=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('spawned_placeables') if isinstance(raw, dict) else raw[22])),
+            self_buffs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('self_buffs') if isinstance(raw, dict) else raw[23]))
         )
