@@ -12,6 +12,7 @@ class ClothingMask(IntEnum):
     HAIRFRONT = 1
     HAIRBOTTOM = 2
     HAIRFULL = 3
+    BALD = 4
 
 
     @classmethod

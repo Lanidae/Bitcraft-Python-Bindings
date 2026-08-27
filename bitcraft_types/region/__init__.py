@@ -420,6 +420,7 @@ from .sign_player_out_msg import SignPlayerOutMsg
 from .signed_in_player_state import SignedInPlayerState
 from .single_resource_to_clump_desc import SingleResourceToClumpDesc
 from .skill_category import SkillCategory
+from .skill_level_knowledge_desc import SkillLevelKnowledgeDesc
 from .skill_type import SkillType
 from .small_hex_tile_message import SmallHexTileMessage
 from .spawn_info import SpawnInfo

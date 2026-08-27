@@ -25,6 +25,9 @@ class EquipmentDesc:
     required_achievements: list = field(default_factory=list)
     required_knowledges: list = field(default_factory=list)
     show_in_progression: bool = False
+    equipment_buff_id: int = 0
+    equipment_buff_chance_per_hit: float = 0.0
+    equipment_buff_skill_id: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'EquipmentDesc':
@@ -40,5 +43,8 @@ class EquipmentDesc:
             stats=[CsvStatEntry.from_row(_item) for _item in ((raw.get('stats') if isinstance(raw, dict) else raw[6]) or [])],
             required_achievements=[_item for _item in ((raw.get('required_achievements') if isinstance(raw, dict) else raw[7]) or [])],
             required_knowledges=[_item for _item in ((raw.get('required_knowledges') if isinstance(raw, dict) else raw[8]) or [])],
-            show_in_progression=(raw.get('show_in_progression') if isinstance(raw, dict) else raw[9])
+            show_in_progression=(raw.get('show_in_progression') if isinstance(raw, dict) else raw[9]),
+            equipment_buff_id=(raw.get('equipment_buff_id') if isinstance(raw, dict) else raw[10]),
+            equipment_buff_chance_per_hit=(raw.get('equipment_buff_chance_per_hit') if isinstance(raw, dict) else raw[11]),
+            equipment_buff_skill_id=(raw.get('equipment_buff_skill_id') if isinstance(raw, dict) else raw[12])
         )
