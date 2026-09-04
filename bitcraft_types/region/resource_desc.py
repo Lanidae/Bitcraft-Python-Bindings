@@ -44,6 +44,7 @@ class ResourceDesc:
     water_depth_min: int = 0
     water_depth_max: int = 0
     max_elevation_delta: int = 0
+    on_destroy_building_outcomes: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'ResourceDesc':
@@ -81,5 +82,6 @@ class ResourceDesc:
             spawns_in_water=(raw.get('spawns_in_water') if isinstance(raw, dict) else raw[28]),
             water_depth_min=(raw.get('water_depth_min') if isinstance(raw, dict) else raw[29]),
             water_depth_max=(raw.get('water_depth_max') if isinstance(raw, dict) else raw[30]),
-            max_elevation_delta=(raw.get('max_elevation_delta') if isinstance(raw, dict) else raw[31])
+            max_elevation_delta=(raw.get('max_elevation_delta') if isinstance(raw, dict) else raw[31]),
+            on_destroy_building_outcomes=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('on_destroy_building_outcomes') if isinstance(raw, dict) else raw[32]))
         )

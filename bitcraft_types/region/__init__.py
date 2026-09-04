@@ -405,6 +405,7 @@ from .reserved_name_desc import ReservedNameDesc
 from .reset_chunk_index_timer import ResetChunkIndexTimer
 from .resource_clump_desc import ResourceClumpDesc
 from .resource_count import ResourceCount
+from .resource_destroy_building_outcome import ResourceDestroyBuildingOutcome
 from .resource_growth_recipe_desc import ResourceGrowthRecipeDesc
 from .resource_health_state import ResourceHealthState
 from .resource_info import ResourceInfo

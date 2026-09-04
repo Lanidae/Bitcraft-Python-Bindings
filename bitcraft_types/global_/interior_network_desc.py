@@ -15,6 +15,8 @@ class InteriorNetworkDesc:
     trigger_collapse_time: int = 0
     respawn_time: int = 0
     child_interior_instances: list = field(default_factory=list)
+    start_collapsing: bool = False
+    destroy_building_on_collapse: bool = False
 
     @classmethod
     def from_row(cls, raw) -> 'InteriorNetworkDesc':
@@ -25,5 +27,7 @@ class InteriorNetworkDesc:
             dimension_type=DimensionType.from_row((raw.get('dimension_type') if isinstance(raw, dict) else raw[1])),
             trigger_collapse_time=(raw.get('trigger_collapse_time') if isinstance(raw, dict) else raw[2]),
             respawn_time=(raw.get('respawn_time') if isinstance(raw, dict) else raw[3]),
-            child_interior_instances=[_item for _item in ((raw.get('child_interior_instances') if isinstance(raw, dict) else raw[4]) or [])]
+            child_interior_instances=[_item for _item in ((raw.get('child_interior_instances') if isinstance(raw, dict) else raw[4]) or [])],
+            start_collapsing=(raw.get('start_collapsing') if isinstance(raw, dict) else raw[5]),
+            destroy_building_on_collapse=(raw.get('destroy_building_on_collapse') if isinstance(raw, dict) else raw[6])
         )
