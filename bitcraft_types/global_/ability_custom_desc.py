@@ -27,6 +27,15 @@ class AbilityCustomDesc:
     linked_ability_buff_desc_id: int = 0
     animation: str = ''
     icon_path: str = ''
+    required_buff_ids: object | None = None
+    consume_required_buff: bool = False
+    perform_profession_hit: bool = False
+    profession_hit_bonus_damage: int = 0
+    profession_hit_skill_id: int = 0
+    description: str = ''
+    input_item_stacks: object | None = None
+    output_item_stacks: object | None = None
+    spawned_placeables: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'AbilityCustomDesc':
@@ -49,5 +58,14 @@ class AbilityCustomDesc:
             global_cooldown=(raw.get('global_cooldown') if isinstance(raw, dict) else raw[13]),
             linked_ability_buff_desc_id=(raw.get('linked_ability_buff_desc_id') if isinstance(raw, dict) else raw[14]),
             animation=(raw.get('animation') if isinstance(raw, dict) else raw[15]),
-            icon_path=(raw.get('icon_path') if isinstance(raw, dict) else raw[16])
+            icon_path=(raw.get('icon_path') if isinstance(raw, dict) else raw[16]),
+            required_buff_ids=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('required_buff_ids') if isinstance(raw, dict) else raw[17])),
+            consume_required_buff=(raw.get('consume_required_buff') if isinstance(raw, dict) else raw[18]),
+            perform_profession_hit=(raw.get('perform_profession_hit') if isinstance(raw, dict) else raw[19]),
+            profession_hit_bonus_damage=(raw.get('profession_hit_bonus_damage') if isinstance(raw, dict) else raw[20]),
+            profession_hit_skill_id=(raw.get('profession_hit_skill_id') if isinstance(raw, dict) else raw[21]),
+            description=(raw.get('description') if isinstance(raw, dict) else raw[22]),
+            input_item_stacks=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('input_item_stacks') if isinstance(raw, dict) else raw[23])),
+            output_item_stacks=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('output_item_stacks') if isinstance(raw, dict) else raw[24])),
+            spawned_placeables=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('spawned_placeables') if isinstance(raw, dict) else raw[25]))
         )

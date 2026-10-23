@@ -13,6 +13,7 @@ class DeployableAppearanceOverrideDesc:
     affected_model_address: str = ''
     model_address: str = ''
     icon_asset_name: str = ''
+    affected_model_addresses: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'DeployableAppearanceOverrideDesc':
@@ -23,5 +24,6 @@ class DeployableAppearanceOverrideDesc:
             collectible_id=(raw.get('collectible_id') if isinstance(raw, dict) else raw[1]),
             affected_model_address=(raw.get('affected_model_address') if isinstance(raw, dict) else raw[2]),
             model_address=(raw.get('model_address') if isinstance(raw, dict) else raw[3]),
-            icon_asset_name=(raw.get('icon_asset_name') if isinstance(raw, dict) else raw[4])
+            icon_asset_name=(raw.get('icon_asset_name') if isinstance(raw, dict) else raw[4]),
+            affected_model_addresses=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('affected_model_addresses') if isinstance(raw, dict) else raw[5]))
         )

@@ -39,6 +39,7 @@ class CraftingRecipeDesc:
     allow_use_hands: bool = False
     is_passive: bool = False
     show_in_progression: bool = False
+    self_buffs: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'CraftingRecipeDesc':
@@ -68,5 +69,6 @@ class CraftingRecipeDesc:
             hide_with_blocking_knowledges=(raw.get('hide_with_blocking_knowledges') if isinstance(raw, dict) else raw[20]),
             allow_use_hands=(raw.get('allow_use_hands') if isinstance(raw, dict) else raw[21]),
             is_passive=(raw.get('is_passive') if isinstance(raw, dict) else raw[22]),
-            show_in_progression=(raw.get('show_in_progression') if isinstance(raw, dict) else raw[23])
+            show_in_progression=(raw.get('show_in_progression') if isinstance(raw, dict) else raw[23]),
+            self_buffs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('self_buffs') if isinstance(raw, dict) else raw[24]))
         )

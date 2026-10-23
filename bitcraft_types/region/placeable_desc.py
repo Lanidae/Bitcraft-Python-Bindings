@@ -26,6 +26,7 @@ class PlaceableDesc:
     spawns_in_water: bool = False
     water_depth_min: int = 0
     water_depth_max: int = 0
+    enemy_params_id: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'PlaceableDesc':
@@ -47,5 +48,6 @@ class PlaceableDesc:
             land_elevation_max=(raw.get('land_elevation_max') if isinstance(raw, dict) else raw[12]),
             spawns_in_water=(raw.get('spawns_in_water') if isinstance(raw, dict) else raw[13]),
             water_depth_min=(raw.get('water_depth_min') if isinstance(raw, dict) else raw[14]),
-            water_depth_max=(raw.get('water_depth_max') if isinstance(raw, dict) else raw[15])
+            water_depth_max=(raw.get('water_depth_max') if isinstance(raw, dict) else raw[15]),
+            enemy_params_id=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('enemy_params_id') if isinstance(raw, dict) else raw[16]))
         )

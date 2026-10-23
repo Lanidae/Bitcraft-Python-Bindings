@@ -189,7 +189,10 @@ from .interior_environment_desc import InteriorEnvironmentDesc
 from .interior_instance_desc import InteriorInstanceDesc
 from .interior_player_count_state import InteriorPlayerCountState
 from .interior_portal_connections_desc import InteriorPortalConnectionsDesc
+from .interior_spawn_destroy_trigger_desc import InteriorSpawnDestroyTriggerDesc
+from .interior_spawn_random_group_desc import InteriorSpawnRandomGroupDesc
 from .interior_spawn_type import InteriorSpawnType
+from .interior_spawned_resource_state import InteriorSpawnedResourceState
 from .item_conversion_location_context import ItemConversionLocationContext
 from .item_type import ItemType
 from .knowledge_scroll_desc import KnowledgeScrollDesc
@@ -373,6 +376,7 @@ from .action_state import ActionState
 from .combat_state import CombatState
 from .action_log_state import ActionLogState
 from .alert_state import AlertState
+from .floating_platform_desc import FloatingPlatformDesc
 from .ability_custom_desc import AbilityCustomDesc
 from .building_buff_desc import BuildingBuffDesc
 from .food_desc import FoodDesc

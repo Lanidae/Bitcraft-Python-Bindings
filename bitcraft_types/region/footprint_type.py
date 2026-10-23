@@ -12,6 +12,7 @@ class FootprintType(IntEnum):
     WALKABLE = 1
     PERIMETER = 2
     WALKABLERESOURCE = 3
+    PLATFORM = 4
 
 
     @classmethod

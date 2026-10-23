@@ -15,6 +15,7 @@ class InteriorSpawnType(IntEnum):
     RESOURCE = 4
     ENEMY = 5
     PAVING = 6
+    INTERIORSPAWNRANDOMGROUP = 7
 
 
     @classmethod

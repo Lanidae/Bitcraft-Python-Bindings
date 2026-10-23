@@ -28,6 +28,7 @@ class InteriorSpawnDesc:
     traveler_ruin_entity_id: int = 0
     respawn: bool = False
     collapse_trigger: bool = False
+    interior_spawn_random_group_id: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'InteriorSpawnDesc':
@@ -49,5 +50,6 @@ class InteriorSpawnDesc:
             traveler_type=NpcType.from_row((raw.get('traveler_type') if isinstance(raw, dict) else raw[12])),
             traveler_ruin_entity_id=(raw.get('traveler_ruin_entity_id') if isinstance(raw, dict) else raw[13]),
             respawn=(raw.get('respawn') if isinstance(raw, dict) else raw[14]),
-            collapse_trigger=(raw.get('collapse_trigger') if isinstance(raw, dict) else raw[15])
+            collapse_trigger=(raw.get('collapse_trigger') if isinstance(raw, dict) else raw[15]),
+            interior_spawn_random_group_id=(raw.get('interior_spawn_random_group_id') if isinstance(raw, dict) else raw[16])
         )
