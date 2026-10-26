@@ -346,6 +346,8 @@ from .player_report_state_op import PlayerReportStateOp
 from .player_report_state_timestamp import PlayerReportStateTimestamp
 from .player_retrieve_lost_item_request import PlayerRetrieveLostItemRequest
 from .player_scroll_read_request import PlayerScrollReadRequest
+from .player_session_log import PlayerSessionLog
+from .player_session_log_cleanup_loop_timer import PlayerSessionLogCleanupLoopTimer
 from .player_set_default_deployable_request import PlayerSetDefaultDeployableRequest
 from .player_set_home_request import PlayerSetHomeRequest
 from .player_set_name_outcome_event import PlayerSetNameOutcomeEvent
