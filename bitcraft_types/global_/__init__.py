@@ -217,6 +217,7 @@ from .mod_consequence_state import ModConsequenceState
 from .mod_enforcement_config_state import ModEnforcementConfigState
 from .mod_flag_level_threshold_state import ModFlagLevelThresholdState
 from .mod_flagged_word_state import ModFlaggedWordState
+from .mod_playtime_threshold_state import ModPlaytimeThresholdState
 from .mod_replacement_text_state import ModReplacementTextState
 from .mod_report_config_state import ModReportConfigState
 from .mod_threshold_state import ModThresholdState
