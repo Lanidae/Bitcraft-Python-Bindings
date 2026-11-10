@@ -30,6 +30,11 @@ class ClaimTechType(IntEnum):
     TOWNBANK = 19
     LARGEHOUSE = 20
     TOWNMARKET = 21
+    HOMESTEAD = 22
+    ONEWAYWAYSTONES = 23
+    DESTINATIONWAYSTONES = 24
+    STARTERTECH = 25
+    REGIONALBANK = 26
 
 
     @classmethod

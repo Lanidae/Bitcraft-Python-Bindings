@@ -13,6 +13,7 @@ class InteriorSpawnDestroyTriggerDesc:
     destroyed_interior_spawn_ids: list = field(default_factory=list)
     trigger_interior_spawn_ids: list = field(default_factory=list)
     require_all_triggers: bool = False
+    track_on_destroy_spawned_resources: bool = False
 
     @classmethod
     def from_row(cls, raw) -> 'InteriorSpawnDestroyTriggerDesc':
@@ -23,5 +24,6 @@ class InteriorSpawnDestroyTriggerDesc:
             name=(raw.get('name') if isinstance(raw, dict) else raw[1]),
             destroyed_interior_spawn_ids=[_item for _item in ((raw.get('destroyed_interior_spawn_ids') if isinstance(raw, dict) else raw[2]) or [])],
             trigger_interior_spawn_ids=[_item for _item in ((raw.get('trigger_interior_spawn_ids') if isinstance(raw, dict) else raw[3]) or [])],
-            require_all_triggers=(raw.get('require_all_triggers') if isinstance(raw, dict) else raw[4])
+            require_all_triggers=(raw.get('require_all_triggers') if isinstance(raw, dict) else raw[4]),
+            track_on_destroy_spawned_resources=(raw.get('track_on_destroy_spawned_resources') if isinstance(raw, dict) else raw[5])
         )

@@ -17,6 +17,7 @@ class FloatingPlatformDesc:
     allowed_biomes: list = field(default_factory=list)
     supports_buildings: bool = False
     max_per_player: int = 0
+    target_elevation: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'FloatingPlatformDesc':
@@ -29,5 +30,6 @@ class FloatingPlatformDesc:
             max_water_depth=(raw.get('max_water_depth') if isinstance(raw, dict) else raw[3]),
             allowed_biomes=[Biome.from_row(_item) for _item in ((raw.get('allowed_biomes') if isinstance(raw, dict) else raw[4]) or [])],
             supports_buildings=(raw.get('supports_buildings') if isinstance(raw, dict) else raw[5]),
-            max_per_player=(raw.get('max_per_player') if isinstance(raw, dict) else raw[6])
+            max_per_player=(raw.get('max_per_player') if isinstance(raw, dict) else raw[6]),
+            target_elevation=(raw.get('target_elevation') if isinstance(raw, dict) else raw[7])
         )

@@ -39,6 +39,7 @@ class PlaceablePlacementDesc:
     buildings: list = field(default_factory=list)
     recipe_performance_id: int = 0
     self_buffs: object | None = None
+    acceptable_pavements: object | None = None
 
     @classmethod
     def from_row(cls, raw) -> 'PlaceablePlacementDesc':
@@ -70,5 +71,6 @@ class PlaceablePlacementDesc:
             max_distance_to_buildings=(raw.get('max_distance_to_buildings') if isinstance(raw, dict) else raw[22]),
             buildings=[_item for _item in ((raw.get('buildings') if isinstance(raw, dict) else raw[23]) or [])],
             recipe_performance_id=(raw.get('recipe_performance_id') if isinstance(raw, dict) else raw[24]),
-            self_buffs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('self_buffs') if isinstance(raw, dict) else raw[25]))
+            self_buffs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('self_buffs') if isinstance(raw, dict) else raw[25])),
+            acceptable_pavements=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('acceptable_pavements') if isinstance(raw, dict) else raw[26]))
         )

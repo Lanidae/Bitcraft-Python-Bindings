@@ -33,6 +33,8 @@ class BuildingCategory(IntEnum):
     RECOVERYCHEST = 22
     PLAYERHOUSING = 23
     PREMIUMBUILDING = 24
+    ONEWAYWAYSTONE = 25
+    REGIONALBANK = 26
 
 
     @classmethod

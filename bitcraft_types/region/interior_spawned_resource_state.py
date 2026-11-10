@@ -11,6 +11,8 @@ class InteriorSpawnedResourceState:
     entity_id: int = 0
     interior_spawn_desc_id: int = 0
     dimension_id: int = 0
+    destroy_trigger_completed: bool = False
+    original_resource_id: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'InteriorSpawnedResourceState':
@@ -19,5 +21,7 @@ class InteriorSpawnedResourceState:
         return cls(
             entity_id=(raw.get('entity_id') if isinstance(raw, dict) else raw[0]),
             interior_spawn_desc_id=(raw.get('interior_spawn_desc_id') if isinstance(raw, dict) else raw[1]),
-            dimension_id=(raw.get('dimension_id') if isinstance(raw, dict) else raw[2])
+            dimension_id=(raw.get('dimension_id') if isinstance(raw, dict) else raw[2]),
+            destroy_trigger_completed=(raw.get('destroy_trigger_completed') if isinstance(raw, dict) else raw[3]),
+            original_resource_id=(raw.get('original_resource_id') if isinstance(raw, dict) else raw[4])
         )

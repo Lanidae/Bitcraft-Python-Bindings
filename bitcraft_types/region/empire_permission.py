@@ -18,6 +18,7 @@ class EmpirePermission(IntEnum):
     COUNT = 7
     HARVESTEMPIRERESOURCES = 8
     WITHDRAWEMPIRECURRENCY = 9
+    MANAGEBLACKLIST = 10
 
 
     @classmethod

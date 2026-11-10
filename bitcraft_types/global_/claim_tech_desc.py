@@ -25,6 +25,9 @@ class ClaimTechDesc:
     supplies: int = 0
     xp_to_mint_hex_coin: int = 0
     unlocks_techs: list = field(default_factory=list)
+    cannot_be_researched: bool = False
+    blocking_claim_techs: object | None = None
+    not_shown_in_ui: bool = False
 
     @classmethod
     def from_row(cls, raw) -> 'ClaimTechDesc':
@@ -44,5 +47,8 @@ class ClaimTechDesc:
             area=(raw.get('area') if isinstance(raw, dict) else raw[10]),
             supplies=(raw.get('supplies') if isinstance(raw, dict) else raw[11]),
             xp_to_mint_hex_coin=(raw.get('xp_to_mint_hex_coin') if isinstance(raw, dict) else raw[12]),
-            unlocks_techs=[_item for _item in ((raw.get('unlocks_techs') if isinstance(raw, dict) else raw[13]) or [])]
+            unlocks_techs=[_item for _item in ((raw.get('unlocks_techs') if isinstance(raw, dict) else raw[13]) or [])],
+            cannot_be_researched=(raw.get('cannot_be_researched') if isinstance(raw, dict) else raw[14]),
+            blocking_claim_techs=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('blocking_claim_techs') if isinstance(raw, dict) else raw[15])),
+            not_shown_in_ui=(raw.get('not_shown_in_ui') if isinstance(raw, dict) else raw[16])
         )

@@ -106,6 +106,11 @@ class ParametersDesc:
     rp_walk_speed: float = 0.0
     traveler_task_weekly_credits: object | None = None
     traveler_task_reroll_credit_cost: int = 0
+    min_distance_to_neutral_claims: int = 0
+    claim_totem_spacing: int = 0
+    empire_watchtower_upkeep_per_chunk: float = 0.0
+    empire_watchtower_upkeep_per_total_chunks: float = 0.0
+    empire_siege_delay_ticks: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ParametersDesc':
@@ -207,5 +212,10 @@ class ParametersDesc:
             prospecting_herd_immunity_secs=(raw.get('prospecting_herd_immunity_secs') if isinstance(raw, dict) else raw[92]),
             rp_walk_speed=(raw.get('rp_walk_speed') if isinstance(raw, dict) else raw[93]),
             traveler_task_weekly_credits=(lambda _v: None if (_v is None or (isinstance(_v, list) and _v[0] == 1)) else (_v[1]))((raw.get('traveler_task_weekly_credits') if isinstance(raw, dict) else raw[94])),
-            traveler_task_reroll_credit_cost=(raw.get('traveler_task_reroll_credit_cost') if isinstance(raw, dict) else raw[95])
+            traveler_task_reroll_credit_cost=(raw.get('traveler_task_reroll_credit_cost') if isinstance(raw, dict) else raw[95]),
+            min_distance_to_neutral_claims=(raw.get('min_distance_to_neutral_claims') if isinstance(raw, dict) else raw[96]),
+            claim_totem_spacing=(raw.get('claim_totem_spacing') if isinstance(raw, dict) else raw[97]),
+            empire_watchtower_upkeep_per_chunk=(raw.get('empire_watchtower_upkeep_per_chunk') if isinstance(raw, dict) else raw[98]),
+            empire_watchtower_upkeep_per_total_chunks=(raw.get('empire_watchtower_upkeep_per_total_chunks') if isinstance(raw, dict) else raw[99]),
+            empire_siege_delay_ticks=(raw.get('empire_siege_delay_ticks') if isinstance(raw, dict) else raw[100])
         )

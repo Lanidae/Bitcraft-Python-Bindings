@@ -97,6 +97,7 @@ from .duel_state import DuelState
 from .elevator_desc import ElevatorDesc
 from .emote_desc import EmoteDesc
 from .empire_add_currency_msg import EmpireAddCurrencyMsg
+from .empire_blacklist_state import EmpireBlacklistState
 from .empire_change_emblem_request import EmpireChangeEmblemRequest
 from .empire_chunk_state import EmpireChunkState
 from .empire_chunk_state_op import EmpireChunkStateOp
@@ -166,6 +167,7 @@ from .extraction_spawned_placeable import ExtractionSpawnedPlaceable
 from .float_hex_tile_message import FloatHexTileMessage
 from .footprint_type import FootprintType
 from .friends_state import FriendsState
+from .furniture_emote_desc import FurnitureEmoteDesc
 from .gate_desc import GateDesc
 from .gated_feature import GatedFeature
 from .global_delete_empire_building_msg import GlobalDeleteEmpireBuildingMsg

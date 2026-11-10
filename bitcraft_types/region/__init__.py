@@ -183,6 +183,7 @@ from .extract_outcome_state_v2 import ExtractOutcomeStateV2
 from .extraction_spawned_placeable import ExtractionSpawnedPlaceable
 from .float_hex_tile_message import FloatHexTileMessage
 from .footprint_type import FootprintType
+from .furniture_emote_desc import FurnitureEmoteDesc
 from .gate_desc import GateDesc
 from .gated_feature import GatedFeature
 from .global_delete_empire_building_msg import GlobalDeleteEmpireBuildingMsg

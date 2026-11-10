@@ -21,6 +21,7 @@ class AbilityTypeEnum(IntEnum):
     DEPLOYABLETOGGLE = 10
     EMOTE = 11
     EQUIPPRESET = 12
+    PLACEABLEPLACE = 13
 
 
     @classmethod
