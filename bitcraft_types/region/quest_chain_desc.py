@@ -20,6 +20,7 @@ class QuestChainDesc:
     implicit_rewards: list = field(default_factory=list)
     unstartable: bool = False
     is_secret: bool = False
+    recommended_priority: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'QuestChainDesc':
@@ -34,5 +35,6 @@ class QuestChainDesc:
             rewards=[QuestReward.from_row(_item) for _item in ((raw.get('rewards') if isinstance(raw, dict) else raw[5]) or [])],
             implicit_rewards=[QuestReward.from_row(_item) for _item in ((raw.get('implicit_rewards') if isinstance(raw, dict) else raw[6]) or [])],
             unstartable=(raw.get('unstartable') if isinstance(raw, dict) else raw[7]),
-            is_secret=(raw.get('is_secret') if isinstance(raw, dict) else raw[8])
+            is_secret=(raw.get('is_secret') if isinstance(raw, dict) else raw[8]),
+            recommended_priority=(raw.get('recommended_priority') if isinstance(raw, dict) else raw[9])
         )

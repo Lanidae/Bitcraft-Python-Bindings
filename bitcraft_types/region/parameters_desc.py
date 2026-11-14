@@ -111,6 +111,7 @@ class ParametersDesc:
     empire_watchtower_upkeep_per_chunk: float = 0.0
     empire_watchtower_upkeep_per_total_chunks: float = 0.0
     empire_siege_delay_ticks: int = 0
+    floating_platform_region_edge_margin_chunks: int = 0
 
     @classmethod
     def from_row(cls, raw) -> 'ParametersDesc':
@@ -217,5 +218,6 @@ class ParametersDesc:
             claim_totem_spacing=(raw.get('claim_totem_spacing') if isinstance(raw, dict) else raw[97]),
             empire_watchtower_upkeep_per_chunk=(raw.get('empire_watchtower_upkeep_per_chunk') if isinstance(raw, dict) else raw[98]),
             empire_watchtower_upkeep_per_total_chunks=(raw.get('empire_watchtower_upkeep_per_total_chunks') if isinstance(raw, dict) else raw[99]),
-            empire_siege_delay_ticks=(raw.get('empire_siege_delay_ticks') if isinstance(raw, dict) else raw[100])
+            empire_siege_delay_ticks=(raw.get('empire_siege_delay_ticks') if isinstance(raw, dict) else raw[100]),
+            floating_platform_region_edge_margin_chunks=(raw.get('floating_platform_region_edge_margin_chunks') if isinstance(raw, dict) else raw[101])
         )
